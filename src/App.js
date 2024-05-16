@@ -1,9 +1,12 @@
 import './App.css';
+import Body from './Body';
+import Header from './Header';
 
 const App=()=> {
   return (
     <div>
-      <h1 className='text-red-700 font-bold'>hey</h1>
+      <Header/>
+      <Body/>
     </div>
   );
 }
