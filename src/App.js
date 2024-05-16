@@ -1,10 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App=()=> {
   return (
     <div>
-      <h1>hey</h1>
+      <h1 className='text-red-700 font-bold'>hey</h1>
     </div>
   );
 }
