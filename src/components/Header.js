@@ -12,6 +12,7 @@ const Header = () => {
             <div className="flex justify-center items-center col-span-1">
                 <img className="h-8 w-8" src="https://img.icons8.com/ios-filled/50/menu--v6.png" alt="menu--v6" onClick={toggleMenuBar} />
                 <img className="h-16 w-16" src={vidspacelogo} alt="logo" />
+                <h1 className="font-bold">vidSpace</h1>
             </div>
             <div className="flex col-span-10">
                 <p>Search</p>

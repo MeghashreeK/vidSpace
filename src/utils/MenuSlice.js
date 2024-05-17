@@ -9,11 +9,11 @@ reducers:{
 toggleMenu:(state)=>{
     state.isMenuOpen=!(state.isMenuOpen);
 },
-CloseMenu:(state)=>{
+closeMenu:(state)=>{
     state.isMenuOpen=false;
 }
 }
 });
 
-export const {toggleMenu} =MenuSlice.actions;
+export const {toggleMenu,closeMenu} =MenuSlice.actions;
 export default  MenuSlice.reducer;
