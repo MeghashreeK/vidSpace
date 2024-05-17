@@ -8,6 +8,9 @@ initialState:{
 reducers:{
 toggleMenu:(state)=>{
     state.isMenuOpen=!(state.isMenuOpen);
+},
+CloseMenu:(state)=>{
+    state.isMenuOpen=false;
 }
 }
 });
