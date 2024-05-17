@@ -6,8 +6,8 @@ import WatchPage from "./WatchPage";
 const Body = () => {
     return (
         <div className="flex">
-            <SideBar/>
-            <Outlet/>
+            <SideBar />
+            <Outlet />
         </div>
     );
 }

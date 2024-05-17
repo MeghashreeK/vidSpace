@@ -4,7 +4,7 @@ const SideBar = () => {
     const isMenuOpen=useSelector((store)=>store.menu.isMenuOpen);
     if(!isMenuOpen) return null;
     return (
-        <ul>
+        <ul className="border-2 border-black w-1/6">
             <div className="flex">
                 <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2" />                <li>Home</li>
             </div>
