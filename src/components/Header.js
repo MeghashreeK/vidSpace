@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import vidspacelogo from "../images/vidspace-logo.png";
 import { toggleMenu } from "../utils/MenuSlice";
+import { Link } from "react-router-dom";
 const Header = () => {
     const dispatch = useDispatch();
     const toggleMenuBar = () => {
@@ -13,6 +14,7 @@ const Header = () => {
                 <img className="h-8 w-8" src="https://img.icons8.com/ios-filled/50/menu--v6.png" alt="menu--v6" onClick={toggleMenuBar} />
                 <img className="h-16 w-16" src={vidspacelogo} alt="logo" />
                 <h1 className="font-bold">vidSpace</h1>
+               
             </div>
             <div className="flex col-span-10">
                 <p>Search</p>
