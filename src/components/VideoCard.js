@@ -7,24 +7,13 @@ const VideoCard = ({ videoInfo }) => {
     return (
         <div className="border-2 border-black">
          
-            <img className="w-full" alt="thumbnail" src={thumbnails.medium.url} />
+            <img  className="w-full" alt="thumbnail" src={thumbnails.medium.url} />
             <ul>
-                <li>{viewCount}views</li>
-                <li>{title}</li>
-                <li>{channelTitle}</li>
-            </ul>
-          
+                <li className="font-bold">{title}</li>
+                <li className="text-slate-400">{channelTitle}</li>
+                <li className="text-slate-400">{viewCount}views</li>
+            </ul>   
         </div>
-    //     <div className="border-2 border-black w-full p-4 h-full rounded-lg shadow-lg">
-    //     {thumbnails && thumbnails.medium && (
-    //         <img alt="thumbnail" src={thumbnails.medium.url} className="w-full h-auto rounded" />
-    //     )}
-    //     <ul className="mt-2">
-    //         <li className="font-bold">{title}</li>
-    //         <li className="text-gray-600">{channelTitle}</li>
-    //         <li className="text-gray-600">{viewCount} views</li>
-    //     </ul>
-    // </div>
     );
 }
 export default VideoCard;
