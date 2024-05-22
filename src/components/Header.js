@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import vidspacelogo from "../images/vidspace-logo.png";
 import { toggleMenu } from "../utils/MenuSlice";
 import { useEffect, useState } from "react";
-import { YOUTUBE_SUGGESTIONS } from "../constants";
+import { YOUTUBE_SUGGESTIONS } from "../utils/constants";
 const Header = () => {
     const dispatch = useDispatch();
     const toggleMenuBar = () => {
@@ -10,16 +10,25 @@ const Header = () => {
         // console.log(true);
     }
     const [searchQuery,setSearchQuery]=useState("");
+    const [suggestions,setSuggestions]=useState([]);
+    const [checktyping,setCheckTyping]=useState(false);
+    
 
     useEffect(()=>{
+        console.log(searchQuery);
         getSuggestions();
-    },[setSearchQuery]);
+    },[searchQuery]);
 
     const getSuggestions=async()=>{
-        const data=await fetch(YOUTUBE_SUGGESTIONS+setSearchQuery);
+        const data=await fetch(YOUTUBE_SUGGESTIONS+searchQuery);
         const json=await data.json();
         console.log(json);
+        setSuggestions(json[1]);
     }
+const typing=()=>{
+    setCheckTyping(true);
+}
+    
 
     return (
         <div className="grid grid-flow-col p-2 shadow-md shadow-slate-400">
@@ -32,18 +41,13 @@ const Header = () => {
             <div className="flex flex-col col-span-10">
 
                  <div className="flex w-1/2">
-                <input type="text" className="border-black border h-8 w-full rounded-l-full" value={searchQuery} onChange={(e)=>setSearchQuery(e.target.value)}/>
+                <input type="text" className="border-black border h-8 w-full rounded-l-full" value={searchQuery} onChange={(e)=>{setSearchQuery(e.target.value); typing();}}/>
                 <button className="border border-black rounded-r-full px-2"><img className="w-[1.85rem] h-[1.90rem]" src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png" alt="search--v1"/></button>
                 </div>
 
-                <div className="border-2 bg-white fixed mt-9 w-1/3 px-5 rounded-lg">
-                <ul>
-                    <li>apple</li>
-                    <li>apple</li>
-                    <li>apple</li>
-                    <li>apple</li>
-                </ul>
-                </div>
+                {checktyping && <div className="border-2 bg-white fixed mt-9 w-1/3 px-5 rounded-lg">
+                {suggestions.map((query)=><ul><li>{query}</li></ul>)}
+                </div>}
 
             </div>
             <div className="col-span-1">
@@ -54,3 +58,4 @@ const Header = () => {
     );
 }
 export default Header;
+
