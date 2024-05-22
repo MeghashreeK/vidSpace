@@ -13,10 +13,28 @@ const Header = () => {
     const [suggestions,setSuggestions]=useState([]);
     const [checktyping,setCheckTyping]=useState(false);
     
+    // const typing=()=>{
+    //     setCheckTyping(!checktyping);
+    // }
+
+    // if (checktyping === true) {
+    //     document.addEventListener("click", function(event) {
+    //         const searchBarContainer = document.getElementById('searchbar-container');
+         
+    //         if (searchBarContainer.contains(event.target)) {
+    //             return;
+    //         }
+    
+    //         typing();
+    //     });
+    // }
 
     useEffect(()=>{
-        console.log(searchQuery);
-        getSuggestions();
+        const timer=setTimeout(()=>getSuggestions(),200);
+
+        return ()=>{
+            clearInterval(timer);
+        }
     },[searchQuery]);
 
     const getSuggestions=async()=>{
@@ -25,9 +43,7 @@ const Header = () => {
         console.log(json);
         setSuggestions(json[1]);
     }
-const typing=()=>{
-    setCheckTyping(true);
-}
+
     
 
     return (
@@ -40,13 +56,13 @@ const typing=()=>{
             </div>
             <div className="flex flex-col col-span-10">
 
-                 <div className="flex w-1/2">
-                <input type="text" className="border-black border h-8 w-full rounded-l-full" value={searchQuery} onChange={(e)=>{setSearchQuery(e.target.value); typing();}}/>
+                 <div className="flex w-1/2" id="searchbar-container">
+                <input type="text" className="border-black border h-8 w-full rounded-l-full" value={searchQuery} onChange={(e)=>{setSearchQuery(e.target.value);}}/>
                 <button className="border border-black rounded-r-full px-2"><img className="w-[1.85rem] h-[1.90rem]" src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png" alt="search--v1"/></button>
                 </div>
 
-                {checktyping && <div className="border-2 bg-white fixed mt-9 w-1/3 px-5 rounded-lg">
-                {suggestions.map((query)=><ul><li>{query}</li></ul>)}
+                {suggestions.length>0 && <div className="border-2 bg-white fixed mt-9 w-1/3 px-5 rounded-lg">
+                {suggestions.map((query,index)=><ul key={index}><li>{query}</li></ul>)}
                 </div>}
 
             </div>
@@ -58,4 +74,3 @@ const typing=()=>{
     );
 }
 export default Header;
-
