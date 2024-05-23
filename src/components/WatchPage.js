@@ -32,10 +32,10 @@ const getComments=async()=>{
         referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
         
         <div className="flex flex-col border-2 border-black gap-1">
-        {comments.length>0 && comments.map((comment, index) => {
+        {comments.length>0 && comments.map((comment) => {
                         const { authorDisplayName, authorProfileImageUrl, textOriginal } = comment?.snippet?.topLevelComment?.snippet || {};
                         return (
-                            <div key={index} className="flex items-start gap-2">
+                            <div key={comment.id} className="flex items-start gap-2">
                                 <img className="h-10 w-10 rounded-full" src={authorProfileImageUrl} alt="user-profile" />
                                 <div>
                                     <p className="font-bold">{authorDisplayName}</p>
