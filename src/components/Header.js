@@ -32,6 +32,16 @@ const Header = () => {
                 setSuggestions([]);
             }
         });
+
+        document.addEventListener("scroll", function (event) {
+            const searchBarContainer = document.getElementById('searchbar-container');
+            if (searchBarContainer.contains(event.target)) {
+                return;
+            }
+            else{
+                setSuggestions([]);
+            }
+        });
     }
     handleClick();
     const getSuggestions = async () => {
