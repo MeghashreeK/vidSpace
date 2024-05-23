@@ -21,7 +21,7 @@ const VideoContainer=()=>{
             {videoData.map((video) => (
                 <Link
                     key={video.id}
-                    to={"/watch?v=" + video.id.videoId}
+                    to={"/watch?v=" + video.id}
                 >
                     <VideoCard videoInfo={video} />
                 </Link>
