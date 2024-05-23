@@ -1,26 +1,45 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import vidspacelogo from "../images/vidspace-logo.png";
 import { toggleMenu } from "../utils/MenuSlice";
 import { useEffect, useState } from "react";
 import { YOUTUBE_SUGGESTIONS } from "../utils/constants";
+import { cacheResults } from "../utils/SearchSlice";
 const Header = () => {
     const dispatch = useDispatch();
     const toggleMenuBar = () => {
         dispatch(toggleMenu());
-        // console.log(true);
     }
     const [searchQuery, setSearchQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
-    const [checktyping, setCheckTyping] = useState(false);
+
+    const searchCache = useSelector((store) => store.search);
+
+    // Suppose,
+    // searchCache={
+    //     "iphone":["iphone11","iphone12"]
+    // }
+    // searchQuery=iphone
 
     useEffect(() => {
-        const timer = setTimeout(() => getSuggestions(), 200);
+
+        // const timer=setTimeout(()=>getSuggestions(),200);
+        const timer = setTimeout(() => {
+            if (searchCache[searchQuery]) {
+                setSuggestions(searchCache[searchQuery]);
+            }
+            else {
+                getSuggestions();
+            }
+        }, 200);
+
 
         return () => {
             clearInterval(timer);
         }
-      
+
     }, [searchQuery]);
+
+    useEffect(() => { handleClick(); }, [])
 
     const handleClick = () => {
         document.addEventListener("click", function (event) {
@@ -28,7 +47,7 @@ const Header = () => {
             if (searchBarContainer.contains(event.target)) {
                 return;
             }
-            else{
+            else {
                 setSuggestions([]);
             }
         });
@@ -38,20 +57,22 @@ const Header = () => {
             if (searchBarContainer.contains(event.target)) {
                 return;
             }
-            else{
+            else {
                 setSuggestions([]);
             }
         });
     }
-    handleClick();
+
     const getSuggestions = async () => {
         const data = await fetch(YOUTUBE_SUGGESTIONS + searchQuery);
         const json = await data.json();
         console.log(json);
         setSuggestions(json[1]);
+        dispatch(cacheResults({
+            [searchQuery]: json[1],
+        }))
+
     }
-
-
 
     return (
         <div className="grid grid-flow-col p-2 shadow-md shadow-slate-400">

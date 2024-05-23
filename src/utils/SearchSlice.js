@@ -5,9 +5,11 @@ const SearchSlice=createSlice({
     initialState:{},
     reducers:{
 cacheResults:(state,action)=>{
-    state=[...state,...action.payload]
-}    }
-})
+   return {...state,...action.payload};
+},
+},
+});
 
 export const {cacheResults}=SearchSlice.actions;
 export default SearchSlice.reducer;
+
