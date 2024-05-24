@@ -15,7 +15,7 @@ const SideBar = () => {
             </div>
             <div className="flex">
                 <img width="24" height="24" src="https://img.icons8.com/external-tal-revivo-regular-tal-revivo/24/external-like-thumbs-up-button-from-popular-social-media-logo-regular-tal-revivo.png" alt="external-like-thumbs-up-button-from-popular-social-media-logo-regular-tal-revivo" />            
-                <li>Liked Videos</li>
+                <Link to="/live"><li>Live Videos</li></Link>
             </div>
             <div className="flex">
                 <img width="24" height="24" src="https://img.icons8.com/external-tal-revivo-regular-tal-revivo/24/external-social-media-dislike-thumbs-down-gesture-in-square-logo-regular-tal-revivo.png" alt="external-social-media-dislike-thumbs-down-gesture-in-square-logo-regular-tal-revivo" />            
