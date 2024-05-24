@@ -18,7 +18,6 @@ const WatchPage = () => {
 const getComments=async()=>{
     const data=await fetch(YOUTUBE_COMMENTS+searchParams.get("v"));
     const json=await data.json();
-    // console.log(json.items[2]?.snippet?.topLevelComment?.snippet);
     console.log(json)
     setComments(json.items);
 }
