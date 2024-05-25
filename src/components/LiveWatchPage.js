@@ -27,8 +27,16 @@ const LiveWatchPage = () => {
                     </div>
             </div>
 
-            <div className="flex border-2 border-black w-2/5">
-               <div className="flex">Live Chat</div>
+            <div className="flex flex-col border-2 border-black w-2/5">
+               <div className="flex items-center">
+
+               <img className="h-8 w-8" width="24" height="24" src="https://img.icons8.com/material-rounded/24/000000/user-male-circle.png" alt="user-male-circle" />
+                <div className="flex gap-2">
+                <p>@username</p>
+                <p>wow!!So prettyyyyy</p>
+                </div>
+
+               </div>
             </div>
 
         </div>
