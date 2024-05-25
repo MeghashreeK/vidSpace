@@ -21,8 +21,6 @@ const Header = () => {
     // searchQuery=iphone
 
     useEffect(() => {
-
-        // const timer=setTimeout(()=>getSuggestions(),200);
         const timer = setTimeout(() => {
             if (searchCache[searchQuery]) {
                 setSuggestions(searchCache[searchQuery]);
@@ -66,7 +64,7 @@ const Header = () => {
     const getSuggestions = async () => {
         const data = await fetch(YOUTUBE_SUGGESTIONS + searchQuery);
         const json = await data.json();
-        console.log(json);
+        // console.log(json);
         setSuggestions(json[1]);
         dispatch(cacheResults({
             [searchQuery]: json[1],
