@@ -3,14 +3,13 @@ import { closeMenu } from "../utils/MenuSlice";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { YOUTUBE_COMMENTS } from "../utils/constants";
-import vidspacelogo from "../images/vidspace-logo.png";
-
+import { YOUTUBE_SUGGESTIONS_VIDEOS } from "../utils/constants";
 
 const WatchPage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(closeMenu());
-        getComments();
+        getComments();        
     }, [])
     const [searchParams] = useSearchParams();
     console.log(searchParams.get("v"));
@@ -24,7 +23,6 @@ const WatchPage = () => {
         console.log(json)
         setComments(json.items);
     }
-
 
     return (
         <div className=" flex w-full border-2 border-black gap-5">
