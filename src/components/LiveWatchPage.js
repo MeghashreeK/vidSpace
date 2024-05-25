@@ -59,7 +59,7 @@ const LiveWatchPage = () => {
                         message: newMessage,
                         image:"https://img.icons8.com/material-rounded/24/000000/user-male-circle.png"
                     }))
-                    setNewMessage("");
+                    setNewMessage("");                  
                     }}>
                     <input className="border-2 border-black" type="text" value={newMessage} onChange={(e) =>setNewMessage(e.target.value)}/>
                     <button className="border border-black">send</button>
