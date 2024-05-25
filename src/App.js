@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import WatchPage from './components/WatchPage';
 import MainContainer from './components/MainContainer';
 import LiveV from './components/LiveV';
+import LiveWatchPage from './components/LiveWatchPage';
 
 const App=()=> {
   return (
@@ -35,6 +36,10 @@ const AppRouter=createBrowserRouter(
     {
       path:"/live",
       element:<LiveV/>
+  },
+  {
+    path:"/livewatch",
+    element:<LiveWatchPage/>
   }
 
     ]

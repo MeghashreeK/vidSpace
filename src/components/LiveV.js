@@ -23,7 +23,7 @@ const LiveV=()=>{
             {LiveData.map((video) => (
                 <Link
                     key={video.id.videoId}
-                    to={"/watch?v=" + video.id.videoId}
+                    to={"/livewatch?v=" + video.id.videoId}
                 >
                     <LivevCard videoInfo={video} />
                 </Link>
