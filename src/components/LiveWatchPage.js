@@ -11,6 +11,8 @@ const LiveWatchPage = () => {
 
     const dispatch = useDispatch();
     const liveMessage = useSelector((store) => store.chat.message);
+    const [searchParams] = useSearchParams();
+    const [newMessage,setNewMessage]=useState([]);
 
     useEffect(() => {
         dispatch(closeMenu());
@@ -22,12 +24,11 @@ const LiveWatchPage = () => {
                 image: generateRandomImage()
             }))
         }, 1000)
-
         return () => clearInterval(i);
     }, []);
 
-    const [searchParams] = useSearchParams();
-    console.log(searchParams.get("v"));
+  
+
 
     return (
         <div className="flex w-full gap-5 h-screen flex-row">
@@ -51,10 +52,18 @@ const LiveWatchPage = () => {
                         </div>
                     </div>)}
                 </div>
-                <div className="">
-                    <input className="border-2 border-black" type="text" />
-                    <button>send</button>
-                </div>
+                <form onSubmit={(e)=>{
+                    e.preventDefault();
+                    dispatch(addMessage({
+                        name:"@user",
+                        message: newMessage,
+                        image:"https://img.icons8.com/material-rounded/24/000000/user-male-circle.png"
+                    }))
+                    setNewMessage("");
+                    }}>
+                    <input className="border-2 border-black" type="text" value={newMessage} onChange={(e) =>setNewMessage(e.target.value)}/>
+                    <button className="border border-black">send</button>
+                </form>
             </div>
         </div>
     );
