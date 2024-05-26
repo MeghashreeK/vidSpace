@@ -73,16 +73,16 @@ const Header = () => {
     }
 
     return (
-        <div className="grid grid-flow-col p-2 shadow-md shadow-slate-400">
-            <div className="flex justify-center items-center col-span-1">
+        <div className="flex w-full p-2 shadow-md shadow-slate-400 ">
+            <div className="flex w-1/5 items-center justify-between">
                 <img className="h-8 w-8" src="https://img.icons8.com/ios-filled/50/menu--v6.png" alt="menu--v6" onClick={toggleMenuBar} />
-                <img className="h-16 w-16" src={vidspacelogo} alt="logo" />
+                <img className="h-8 w-8" src={vidspacelogo} alt="logo" />
                 <h1 className="font-bold">vidSpace</h1>
 
             </div>
-            <div className="flex flex-col col-span-10">
+            <div className="flex flex-col w-full items-center justify-center">
 
-                <div className="flex w-1/2" id="searchbar-container">
+                <div className="flex w-2/3" id="searchbar-container">
                     <input type="text" className="border-black border h-8 w-full rounded-l-full" value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); }} />
                     <button className="border border-black rounded-r-full px-2"><img className="w-[1.85rem] h-[1.90rem]" src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png" alt="search--v1" /></button>
                 </div>
@@ -91,9 +91,6 @@ const Header = () => {
                     {suggestions.map((query, index) => <ul key={index}><li>{query}</li></ul>)}
                 </div>}
 
-            </div>
-            <div className="col-span-1">
-                <img className="h-8 w-8" width="24" height="24" src="https://img.icons8.com/material-rounded/24/000000/user-male-circle.png" alt="user-male-circle" />
             </div>
         </div>
 

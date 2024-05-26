@@ -4,7 +4,7 @@ const VideoCard = ({ videoInfo }) => {
     const { viewCount } = statistics;
 
     return (
-        <div className="border-2 border-black h-full">
+        <div className="h-full">
         <div className="flex flex-col h-full">
             <img 
                 alt="thumbnail" 
