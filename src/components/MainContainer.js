@@ -2,7 +2,7 @@ import VideoContainer from "./VideoContainer";
 
 const MainContainer=()=>{
     return(
-        <div className="flex flex-col px-5 w-11/12">
+        <div className="flex flex-col px-5 bg-black">
             <VideoContainer/>
         </div>
     );
