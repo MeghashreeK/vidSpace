@@ -64,12 +64,12 @@ const WatchPage = () => {
                 {suggestions.map((data)=>{
                 const {snippet}=data;
                 const {thumbnails,title,publishTime,channelTitle}=snippet;
-                <div>
-                    <img className="w-full h-1/5" src={thumbnails.default.url} alt="thumbnail" />
+                return (<div>
+                    <img className="w-full h-1/5" src={thumbnails.high.url} alt="thumbnail" />
                     <p>{title}</p>
                     <p>{publishTime}</p>
                     <p>{channelTitle}</p>
-                </div> })}
+                </div>) })}
             </div>
         </div>
     );
