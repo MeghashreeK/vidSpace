@@ -74,11 +74,12 @@ const Header = () => {
 
     return (
         <div className="flex w-full p-2 shadow-md shadow-slate-400 ">
-            <div className="flex w-1/5 items-center justify-between">
+            <div className="flex w-1/5 items-center gap-2">
                 <img className="h-8 w-8" src="https://img.icons8.com/ios-filled/50/menu--v6.png" alt="menu--v6" onClick={toggleMenuBar} />
-                <img className="h-8 w-8" src={vidspacelogo} alt="logo" />
+                <div className="flex">
+                <img className="h-6 w-8" src={vidspacelogo} alt="logo" />
                 <h1 className="font-bold">vidSpace</h1>
-
+                </div>
             </div>
             <div className="flex flex-col w-full items-center justify-center">
 
