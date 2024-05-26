@@ -73,19 +73,21 @@ const Header = () => {
     }
 
     return (
-        <div className="flex w-full p-2 shadow-md shadow-slate-400 ">
+        <div className="flex w-full p-2 shadow-md shadow-slate-400 bg-[#000000]">
             <div className="flex w-1/5 items-center gap-2">
-                <img className="h-8 w-8" src="https://img.icons8.com/ios-filled/50/menu--v6.png" alt="menu--v6" onClick={toggleMenuBar} />
-                <div className="flex">
+                <img className="h-6 w-6" src="https://img.icons8.com/ios-filled/50/ffffff/menu--v6.png" alt="menu--v6" onClick={toggleMenuBar} />
+                <div className="flex items-center justify-center gap-1">
                 <img className="h-6 w-8" src={vidspacelogo} alt="logo" />
-                <h1 className="font-bold">vidSpace</h1>
+                <h1 className="font-Bebas text-[24px] mt-[3px] text-[#ffffff] hidden sm:block">vidSpace</h1>
                 </div>
+
+
             </div>
             <div className="flex flex-col w-full items-center justify-center">
 
                 <div className="flex w-2/3" id="searchbar-container">
-                    <input type="text" className="border-black border h-8 w-full rounded-l-full" value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); }} />
-                    <button className="border border-black rounded-r-full px-2"><img className="w-[1.85rem] h-[1.90rem]" src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png" alt="search--v1" /></button>
+                    <input type="text" className="border-black border h-8 w-full rounded-l-full border-r-0 placeholder:p-3" placeholder="Search" value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); }} />
+                    <button className="border border-black rounded-r-full px-2 bg-[#1f1f1f]"><img className="w-[18px] h-[18px]" src="https://img.icons8.com/ios-glyphs/30/ffffff/search--v1.png" alt="search--v1" /></button>
                 </div>
 
                 {suggestions.length > 0 && <div className="border-2 bg-white fixed mt-9 w-1/3 px-5 rounded-lg">
