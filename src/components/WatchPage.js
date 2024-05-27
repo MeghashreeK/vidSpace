@@ -6,20 +6,22 @@ import { YOUTUBE_COMMENTS } from "../utils/constants";
 import { YOUTUBE_SUGGESTIONS_VIDEOS } from "../utils/constants";
 
 const WatchPage = () => {
+
+    const [searchParams] = useSearchParams();
+    const [comments, setComments] = useState([]);
+    const [suggestions, setSuggestions] = useState([]);
     const dispatch = useDispatch();
     const suggestionVideoData = useSelector((store) => store.suggestionId.id);
-    console.log(suggestionVideoData);
+    const [displayVideo, setDisplayVideo] = useState(false);
+    const [videoI,setVideoI]=useState([]);
+
+
     useEffect(() => {
         dispatch(closeMenu());
         getComments();
         getSuggestionVideos();
     }, [])
-    const [searchParams] = useSearchParams();
     // console.log(searchParams.get("v"));
-
-    const [comments, setComments] = useState([]);
-    const [suggestions, setSuggestions] = useState([]);
-
 
     const getComments = async () => {
         const data = await fetch(YOUTUBE_COMMENTS + searchParams.get("v"));
@@ -34,15 +36,22 @@ const WatchPage = () => {
         setSuggestions(json.items);
     }
 
+    const displayFunction = () => {
+        setDisplayVideo(true)
+    }
 
     return (
         <div className=" flex w-full border-2 border-black gap-5">
 
-            <div className="flex flex-col w-3/5 border-2 border-red-700">
+            <div className="flex flex-col w-3/5">
 
-                <iframe height="415" src={"https://www.youtube.com/embed/" + searchParams.get("v")}
+                {displayVideo===false && <iframe height="415" src={"https://www.youtube.com/embed/" + searchParams.get("v")}
                     title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                    referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
+                {displayVideo && <iframe height="415" src={"https://www.youtube.com/embed/" + videoI}
+                    title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
+
 
                 <div className="flex flex-col border-2 border-black gap-1">
                     {comments.length > 0 && comments.map((comment) => {
@@ -60,18 +69,21 @@ const WatchPage = () => {
                 </div>
 
             </div>
-            <div className="w-2/5"> 
-                {suggestions.map((data)=>{
-                const {snippet}=data;
-                const {thumbnails,title,publishTime,channelTitle}=snippet;
-                return (<div>
-                    <img className="w-full h-1/5" src={thumbnails.high.url} alt="thumbnail" />
-                    <p>{title}</p>
-                    <p>{publishTime}</p>
-                    <p>{channelTitle}</p>
-                </div>) })}
+            <div className="w-2/5">
+                {suggestions.map((data) => {
+                    const { snippet,id } = data;
+                    const {videoId}=id;
+                    const { thumbnails, title, publishTime, channelTitle } = snippet;
+                    return (<div onClick={()=>{displayFunction(); setVideoI(videoId)}}>
+                        <img className="w-full h-1/5" src={thumbnails.high.url} alt="thumbnail" />
+                        <p>{title}</p>
+                        <p>{publishTime}</p>
+                        <p>{channelTitle}</p>
+                    </div>)
+                })}
             </div>
         </div>
     );
 }
 export default WatchPage;
+
