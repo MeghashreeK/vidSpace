@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { closeMenu } from "../utils/MenuSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { YOUTUBE_COMMENTS } from "../utils/constants";
 import { YOUTUBE_SUGGESTIONS_VIDEOS } from "../utils/constants";
@@ -14,6 +14,7 @@ const WatchPage = () => {
     const suggestionVideoData = useSelector((store) => store.suggestionId.id);
     const [displayVideo, setDisplayVideo] = useState(false);
     const [videoI,setVideoI]=useState([]);
+    const iframeRef = useRef(null);
 
 
     useEffect(() => {
@@ -37,7 +38,8 @@ const WatchPage = () => {
     }
 
     const displayFunction = () => {
-        setDisplayVideo(true)
+        setDisplayVideo(true);
+        iframeRef.current.scrollIntoView({ behavior: "smooth" });
     }
 
     return (
@@ -48,7 +50,7 @@ const WatchPage = () => {
                 {displayVideo===false && <iframe height="415" src={"https://www.youtube.com/embed/" + searchParams.get("v")}
                     title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
-                {displayVideo && <iframe height="415" src={"https://www.youtube.com/embed/" + videoI}
+                {displayVideo && <iframe ref={iframeRef} height="415" src={"https://www.youtube.com/embed/" + videoI}
                     title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
 
@@ -86,4 +88,6 @@ const WatchPage = () => {
     );
 }
 export default WatchPage;
+
+
 
