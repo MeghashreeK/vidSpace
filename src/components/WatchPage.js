@@ -39,8 +39,10 @@ const WatchPage = () => {
 
     const displayFunction = () => {
         setDisplayVideo(true);
-        iframeRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+        if (iframeRef.current) {
+            iframeRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        }
 
     return (
         <div className=" flex w-full border-2 border-black gap-5">
@@ -71,7 +73,7 @@ const WatchPage = () => {
                 </div>
 
             </div>
-            <div className="w-2/5">
+            <div className="w-2/5 cursor-pointer">
                 {suggestions.map((data) => {
                     const { snippet,id } = data;
                     const {videoId}=id;
@@ -88,6 +90,7 @@ const WatchPage = () => {
     );
 }
 export default WatchPage;
+
 
 
 
