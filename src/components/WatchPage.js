@@ -242,38 +242,38 @@ const WatchPage = () => {
                 </div>
 
             </div>
-            <div className="flex  flex-col w-full sm:w-2/5 cursor-pointer sm:p-0 p-2 gap-5 sm:gap-3">
-                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
+            <div className="flex h-full flex-col w-full sm:w-2/5 cursor-pointer sm:p-0 p-2 gap-5 sm:gap-3">
+                <div onClick={() => { displayFunction(); }} className="p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
                     <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
                     <p className="text-slate-300">2024-05-28T02:46:55Z</p>
                     <p className="text-slate-300">India Forums Hindi</p>
                 </div>
-                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
+                <div onClick={() => { displayFunction(); }} className="p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
                     <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
                     <p className="text-slate-300">2024-05-28T02:46:55Z</p>
                     <p className="text-slate-300">India Forums Hindi</p>
                 </div>
-                <div onClick={() => { displayFunction() }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
+                <div onClick={() => { displayFunction() }} className="p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
                     <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
                     <p className="text-slate-300">2024-05-28T02:46:55Z</p>
                     <p className="text-slate-300">India Forums Hindi</p>
                 </div>
-                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
+                <div onClick={() => { displayFunction(); }} className="p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
                     <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
                     <p className="text-slate-300">2024-05-28T02:46:55Z</p>
                     <p className="text-slate-300">India Forums Hindi</p>
                 </div>
-                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
+                <div onClick={() => { displayFunction(); }} className="p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
                     <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
                     <p className="text-slate-300">2024-05-28T02:46:55Z</p>
                     <p className="text-slate-300">India Forums Hindi</p>
                 </div>
-                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
+                <div onClick={() => { displayFunction(); }} className="p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
                     <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
                     <p className="text-slate-300">2024-05-28T02:46:55Z</p>
