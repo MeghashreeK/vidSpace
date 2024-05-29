@@ -110,6 +110,7 @@ const WatchPage = () => {
     const [displayVideo, setDisplayVideo] = useState(false);
     const [videoI, setVideoI] = useState([]);
     const iframeRef = useRef(null);
+    const commentSection = useRef(null);
     const [subscribeValue, setsubscribeValue] = useState(true);
     const [likeValue, setLikeValue] = useState(true);
     const [dislikedValue, setDislikedValue] = useState(true);
@@ -158,6 +159,9 @@ const WatchPage = () => {
         dispatch(addComment(commentValue));
         setCommentValue("");
         setInsertComment(true);
+        if (commentSection.current) {
+            commentSection.current.scrollIntoView({ behavior: "smooth", flex: "end" });
+        }
 
     }
 
@@ -179,8 +183,22 @@ const WatchPage = () => {
                     <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${dislikedValue === false ? 'bg-white text-black' : ''}`} onClick={() => dislikedValueChange()}>{dislikedValue === true ? 'Dislike' : 'Disliked'}</button>
                 </div>
 
-                <div className="flex flex-col border-2 p-2 border-black gap-1 mt-2">
-                    <p>Comments</p>
+                <div ref={commentSection} className="flex flex-col border-2 p-2 border-black gap-1 mt-2">
+                    <p className="font-bold">Comments</p>
+                    <form className=" flex gap-1 mb-4 mt-4" onSubmit={
+                        (e)=>{
+                            e.preventDefault();
+                            dispatch(addComment(commentValue));
+                            setCommentValue("");
+                            setInsertComment(true);
+                            if (commentSection.current) {
+                                commentSection.current.scrollIntoView({ behavior: "smooth", flex: "end" });
+                            }
+                        }
+                    }>
+                        <input type="text" value={commentValue} placeholder="Add a comment" onChange={(e) => { setCommentValue(e.target.value) }} className="bg-black text-white border-b border-white focus:outline-none focus:border-b focus:border-white w-full" />
+                        <img className="h-5 w-5 cursor-pointer" src="https://img.icons8.com/metro/26/ffffff/sent.png" onClick={() => commentFunction(commentValue)} alt="sent" />
+                    </form>
                     <div className="flex gap-2">
                         <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
                         <div>
@@ -230,15 +248,11 @@ const WatchPage = () => {
                         insertComment && <div className="flex gap-2" key={index}>
                             <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
                             <div>
-                                <p className="font-bold">User</p>
+                                <p className="font-bold">@Username</p>
                                 <p>{comment}</p>
                             </div>
                         </div>
                     )}
-                    <div className=" flex gap-1 mt-4">
-                        <input type="text" value={commentValue} placeholder="Add a comment" onChange={(e) => { setCommentValue(e.target.value) }} className="bg-black text-white border-b border-white focus:outline-none focus:border-b focus:border-white w-full" />
-                        <img className="h-5 w-5 cursor-pointer" src="https://img.icons8.com/metro/26/ffffff/sent.png" onClick={() => commentFunction(commentValue)} alt="sent" />
-                    </div>
                 </div>
 
             </div>
