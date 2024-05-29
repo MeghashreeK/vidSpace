@@ -186,7 +186,7 @@ const WatchPage = () => {
                 <div ref={commentSection} className="flex flex-col border-2 p-2 border-black gap-1 mt-2">
                     <p className="font-bold">Comments</p>
                     <form className=" flex gap-1 mb-4 mt-4" onSubmit={
-                        (e)=>{
+                        (e) => {
                             e.preventDefault();
                             dispatch(addComment(commentValue));
                             setCommentValue("");
@@ -244,7 +244,7 @@ const WatchPage = () => {
                             <p>Kkehk</p>
                         </div>
                     </div>
-                    {addingComment.map((comment,index) => 
+                    {addingComment.map((comment, index) =>
                         insertComment && <div className="flex gap-2" key={index}>
                             <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
                             <div>
@@ -256,42 +256,66 @@ const WatchPage = () => {
                 </div>
 
             </div>
-            <div className="flex h-full flex-col w-full sm:w-2/5 cursor-pointer sm:p-0 p-2 gap-5 sm:gap-3">
-                <div onClick={() => { displayFunction(); }} className="p-2 rounded-lg bg-[#1f1f1f]">
-                    <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
-                    <p className="text-slate-300">India Forums Hindi</p>
+            <div className="flex h-full flex-col w-full sm:w-[30%] cursor-pointer sm:p-0 p-2 gap-5 sm:gap-3">
+                <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
+                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
+                    <div className="p-4 flex flex-col justify-between h-full">
+                        <ul>
+                            <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>
+                            <li className="text-slate-400">2024-05-28T02:46:55Z</li>
+                            <li className="text-slate-400">India Forums Hindi</li>
+                        </ul>
+                    </div>
                 </div>
-                <div onClick={() => { displayFunction(); }} className="p-2 rounded-lg bg-[#1f1f1f]">
-                    <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
-                    <p className="text-slate-300">India Forums Hindi</p>
+                <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
+                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
+                    <div className="p-4 flex flex-col justify-between h-full">
+                        <ul>
+                            <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>
+                            <li className="text-slate-400">2024-05-28T02:46:55Z</li>
+                            <li className="text-slate-400">India Forums Hindi</li>
+                        </ul>
+                    </div>
                 </div>
-                <div onClick={() => { displayFunction() }} className="p-2 rounded-lg bg-[#1f1f1f]">
-                    <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
-                    <p className="text-slate-300">India Forums Hindi</p>
+                <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
+                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
+                    <div className="p-4 flex flex-col justify-between h-full">
+                        <ul>
+                            <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>
+                            <li className="text-slate-400">2024-05-28T02:46:55Z</li>
+                            <li className="text-slate-400">India Forums Hindi</li>
+                        </ul>
+                    </div>
                 </div>
-                <div onClick={() => { displayFunction(); }} className="p-2 rounded-lg bg-[#1f1f1f]">
-                    <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
-                    <p className="text-slate-300">India Forums Hindi</p>
+                <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
+                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
+                    <div className="p-4 flex flex-col justify-between h-full">
+                        <ul>
+                            <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>
+                            <li className="text-slate-400">2024-05-28T02:46:55Z</li>
+                            <li className="text-slate-400">India Forums Hindi</li>
+                        </ul>
+                    </div>
                 </div>
-                <div onClick={() => { displayFunction(); }} className="p-2 rounded-lg bg-[#1f1f1f]">
-                    <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
-                    <p className="text-slate-300">India Forums Hindi</p>
+                <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
+                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
+                    <div className="p-4 flex flex-col justify-between h-full">
+                        <ul>
+                            <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>
+                            <li className="text-slate-400">2024-05-28T02:46:55Z</li>
+                            <li className="text-slate-400">India Forums Hindi</li>
+                        </ul>
+                    </div>
                 </div>
-                <div onClick={() => { displayFunction(); }} className="p-2 rounded-lg bg-[#1f1f1f]">
-                    <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
-                    <p className="text-slate-300">India Forums Hindi</p>
+                <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
+                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
+                    <div className="p-4 flex flex-col justify-between h-full">
+                        <ul>
+                            <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>
+                            <li className="text-slate-400">2024-05-28T02:46:55Z</li>
+                            <li className="text-slate-400">India Forums Hindi</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
