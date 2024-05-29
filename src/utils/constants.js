@@ -4,4 +4,5 @@ export const YOUTUBE_SUGGESTIONS="https://thingproxy.freeboard.io/fetch/https://
 export const YOUTUBE_COMMENTS="https://youtube.googleapis.com/youtube/v3/commentThreads?part=replies%2Csnippet&maxResults=10&key=AIzaSyBtYbRBaXCe8RGGEg77XlTUSCmgiv_uUcM&videoId=";
 export const YOUTUBE_LIVE_VIDEO="https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBtYbRBaXCe8RGGEg77XlTUSCmgiv_uUcM&regionCode=IN&type=video&maxResults=20&q=Live%202024";
 export const YOUTUBE_SUGGESTIONS_VIDEOS="https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBtYbRBaXCe8RGGEg77XlTUSCmgiv_uUcM&regionCode=IN&type=video&maxResults=6&q="
+export const MAIN_PAGE_API="https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBtYbRBaXCe8RGGEg77XlTUSCmgiv_uUcM&regionCode=IN&type=video&maxResults=20&q="
 export const LIVE_CHAT_COUNT=25;

@@ -4,6 +4,7 @@ import SearchSlice from "./SearchSlice";
 import LiveChatSlice from "./LiveChatSlice";
 import SuggestionIdSlice from "./SuggestionIdSlice";
 import CommentsSlice from "./CommentsSlice";
+import MainPageSlice from "./MainPageSlice";
 
 const store=configureStore({
 reducer:{
@@ -12,6 +13,7 @@ reducer:{
     chat:LiveChatSlice,
     suggestionId:SuggestionIdSlice,
     comment:CommentsSlice,
+    apiId:MainPageSlice
 }
 });
 

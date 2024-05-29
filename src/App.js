@@ -8,6 +8,7 @@ import WatchPage from './components/WatchPage';
 import MainContainer from './components/MainContainer';
 import LiveV from './components/LiveV';
 import LiveWatchPage from './components/LiveWatchPage';
+import MainPage from './components/MainPage';
 
 const App=()=> {
   return (
@@ -40,6 +41,10 @@ const AppRouter=createBrowserRouter(
   {
     path:"/livewatch",
     element:<LiveWatchPage/>
+  },
+  {
+    path:"/mainpage",
+    element:<MainPage/>
   }
 
     ]
