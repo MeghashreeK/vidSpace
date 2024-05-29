@@ -86,10 +86,10 @@ const Header = () => {
             <div className="flex flex-col w-full items-center justify-center relative">
 
                 <div className="flex w-2/3" id="searchbar-container">
-                    <input type="text" className="border-black border h-8 w-full rounded-l-full border-r-0 px-5 focus:outline-none" placeholder="Search" value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); }} />
+                    <input type="text" className="flex py-4 pt-3 h-8 w-full rounded-l-full border-r-0 px-5 focus:outline-none" placeholder="Search" value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); }} />
                     <button className="border border-black rounded-r-full px-2 bg-[#1f1f1f]"><img className="w-[18px] h-[18px]" src="https://img.icons8.com/ios-glyphs/30/ffffff/search--v1.png" alt="search--v1" /></button>
                 </div>
-
+                
                 {suggestions.length > 0 && <div className="flex flex-col bg-[#1f1f1f] text-white w-3/5 px-5 rounded-lg absolute top-full mt-1 gap-2 pt-1 pb-1">
                     {suggestions.map((query, index) => (<div className="flex items-center gap-2">
                         <img className="w-[14px] h-[14px] mt-1" src="https://img.icons8.com/ios-glyphs/30/ffffff/search--v1.png" alt="search--v1" />
