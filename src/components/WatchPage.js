@@ -98,6 +98,7 @@ import { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { YOUTUBE_COMMENTS } from "../utils/constants";
 import { YOUTUBE_SUGGESTIONS_VIDEOS } from "../utils/constants";
+import { addComment } from "../utils/CommentsSlice";
 
 const WatchPage = () => {
 
@@ -109,12 +110,14 @@ const WatchPage = () => {
     const [displayVideo, setDisplayVideo] = useState(false);
     const [videoI, setVideoI] = useState([]);
     const iframeRef = useRef(null);
-    const [subscribeValue,setsubscribeValue]=useState(true);
-    const [likeValue,setLikeValue]=useState(true);
-    const [dislikedValue,setDislikedValue]=useState(true);
+    const [subscribeValue, setsubscribeValue] = useState(true);
+    const [likeValue, setLikeValue] = useState(true);
+    const [dislikedValue, setDislikedValue] = useState(true);
+    const [commentValue, setCommentValue] = useState([]);
+    const [insertComment, setInsertComment] = useState(false);
 
-
-
+    const addingComment = useSelector((store) => store.comment.csection);
+    console.log(addingComment);
     useEffect(() => {
         dispatch(closeMenu());
         // getComments();
@@ -140,20 +143,26 @@ const WatchPage = () => {
         }
     }
 
-    const subscribeValueChange=()=>{
+    const subscribeValueChange = () => {
         setsubscribeValue(!subscribeValue);
     }
 
-    const likeValueChange=()=>{
+    const likeValueChange = () => {
         setLikeValue(!likeValue);
     }
 
-    const dislikedValueChange=()=>{
+    const dislikedValueChange = () => {
         setDislikedValue(!dislikedValue);
+    }
+    const commentFunction = (commentValue) => {
+        dispatch(addComment(commentValue));
+        setCommentValue("");
+        setInsertComment(true);
+
     }
 
     return (
-        <div className=" flex w-full h-full bg-black text-white gap-5 sm:p-8 justify-center flex-wrap sm:flex-nowrap border-2 border-red-600" >
+        <div className="flex w-full h-full bg-black text-[14px] sm:text-[16px] text-white gap-5 sm:p-8 justify-center flex-wrap sm:flex-nowrap" >
 
             <div className="flex flex-col w-full sm:w-3/5">
                 <div className="aspect-w-16 aspect-h-9 w-full">
@@ -164,14 +173,14 @@ const WatchPage = () => {
                         title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin" className="rounded-lg w-full" allowFullScreen></iframe>}
                 </div>
-                <div className="flex gap-5 mt-[2%]">
-                        <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${subscribeValue===false? 'bg-white text-black' : ''} cursor-pointer`} onClick={()=>subscribeValueChange()}>{subscribeValue===true ? 'Subscribe':'Subscribed'}</button>
-                        <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${likeValue===false? 'bg-white text-black' : ''}`} onClick={()=>likeValueChange()}>{likeValue===true ? 'Like':'Liked'}</button>
-                        <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${dislikedValue===false? 'bg-white text-black' : ''}`} onClick={()=>dislikedValueChange()}>{dislikedValue===true ? 'Dislike':'Disliked'}</button>
+                <div className="flex gap-5 mt-[2%] p-2">
+                    <button className={`border-white w-26  border rounded-[50%/100%] px-4 py-2 cursor-pointer ${subscribeValue === false ? 'bg-white text-black' : ''} cursor-pointer`} onClick={() => subscribeValueChange()}>{subscribeValue === true ? 'Subscribe' : 'Subscribed'}</button>
+                    <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${likeValue === false ? 'bg-white text-black' : ''}`} onClick={() => likeValueChange()}>{likeValue === true ? 'Like' : 'Liked'}</button>
+                    <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${dislikedValue === false ? 'bg-white text-black' : ''}`} onClick={() => dislikedValueChange()}>{dislikedValue === true ? 'Dislike' : 'Disliked'}</button>
                 </div>
 
-                <div className="flex flex-col border-2 p-2 border-black gap-1">
-
+                <div className="flex flex-col border-2 p-2 border-black gap-1 mt-2">
+                    <p>Comments</p>
                     <div className="flex gap-2">
                         <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
                         <div>
@@ -217,47 +226,58 @@ const WatchPage = () => {
                             <p>Kkehk</p>
                         </div>
                     </div>
-
-
+                    {addingComment.map((comment,index) => 
+                        insertComment && <div className="flex gap-2" key={index}>
+                            <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
+                            <div>
+                                <p className="font-bold">User</p>
+                                <p>{comment}</p>
+                            </div>
+                        </div>
+                    )}
+                    <div className=" flex gap-1 mt-4">
+                        <input type="text" value={commentValue} placeholder="Add a comment" onChange={(e) => { setCommentValue(e.target.value) }} className="bg-black text-white border-b border-white focus:outline-none focus:border-b focus:border-white w-full" />
+                        <img className="h-5 w-5 cursor-pointer" src="https://img.icons8.com/metro/26/ffffff/sent.png" onClick={() => commentFunction(commentValue)} alt="sent" />
+                    </div>
                 </div>
 
             </div>
             <div className="flex  flex-col w-full sm:w-2/5 cursor-pointer sm:p-0 p-2 gap-5 sm:gap-3">
-                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 sm:p-0 rounded-lg">
+                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p>Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p>2024-05-28T02:46:55Z</p>
-                    <p>India Forums Hindi</p>
+                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
+                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
+                    <p className="text-slate-300">India Forums Hindi</p>
                 </div>
-                <div onClick={() => { displayFunction();}} className="border-2 border-black p-2 rounded-lg">
+                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p>Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p>2024-05-28T02:46:55Z</p>
-                    <p>India Forums Hindi</p>
+                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
+                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
+                    <p className="text-slate-300">India Forums Hindi</p>
                 </div>
-                <div onClick={() => { displayFunction()}} className="border-2 border-black p-2 rounded-lg">
+                <div onClick={() => { displayFunction() }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p>Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p>2024-05-28T02:46:55Z</p>
-                    <p>India Forums Hindi</p>
+                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
+                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
+                    <p className="text-slate-300">India Forums Hindi</p>
                 </div>
-                <div onClick={() => { displayFunction();}} className="border-2 border-black p-2 rounded-lg">
+                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p>Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p>2024-05-28T02:46:55Z</p>
-                    <p>India Forums Hindi</p>
+                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
+                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
+                    <p className="text-slate-300">India Forums Hindi</p>
                 </div>
-                <div onClick={() => { displayFunction();}} className="border-2 border-black p-2 rounded-lg">
+                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p>Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p>2024-05-28T02:46:55Z</p>
-                    <p>India Forums Hindi</p>
+                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
+                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
+                    <p className="text-slate-300">India Forums Hindi</p>
                 </div>
-                <div onClick={() => { displayFunction();}} className="border-2 border-black p-2 rounded-lg">
+                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 rounded-lg bg-[#1f1f1f]">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
-                    <p>Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
-                    <p>2024-05-28T02:46:55Z</p>
-                    <p>India Forums Hindi</p>
+                    <p className="font-bold">Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
+                    <p className="text-slate-300">2024-05-28T02:46:55Z</p>
+                    <p className="text-slate-300">India Forums Hindi</p>
                 </div>
             </div>
 

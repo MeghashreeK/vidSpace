@@ -17,7 +17,7 @@ const VideoCard = ({ videoInfo }) => {
 
 
     return (
-        <div className="h-full">
+        <div className="h-full rounded-lg bg-[#1f1f1f]">
             <div className="flex flex-col h-full">
                 <img
                     alt="thumbnail"
