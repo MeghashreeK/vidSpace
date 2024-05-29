@@ -109,6 +109,10 @@ const WatchPage = () => {
     const [displayVideo, setDisplayVideo] = useState(false);
     const [videoI, setVideoI] = useState([]);
     const iframeRef = useRef(null);
+    const [subscribeValue,setsubscribeValue]=useState(true);
+    const [likeValue,setLikeValue]=useState(true);
+    const [dislikedValue,setDislikedValue]=useState(true);
+
 
 
     useEffect(() => {
@@ -136,6 +140,18 @@ const WatchPage = () => {
         }
     }
 
+    const subscribeValueChange=()=>{
+        setsubscribeValue(!subscribeValue);
+    }
+
+    const likeValueChange=()=>{
+        setLikeValue(!likeValue);
+    }
+
+    const dislikedValueChange=()=>{
+        setDislikedValue(!dislikedValue);
+    }
+
     return (
         <div className=" flex w-full h-full bg-black text-white gap-5 sm:p-8 justify-center flex-wrap sm:flex-nowrap border-2 border-red-600" >
 
@@ -149,9 +165,9 @@ const WatchPage = () => {
                         referrerPolicy="strict-origin-when-cross-origin" className="rounded-lg w-full" allowFullScreen></iframe>}
                 </div>
                 <div className="flex gap-5 mt-[2%]">
-                        <button className="border-white w-24 border rounded-[50%/100%] px-4 py-2">Subscribe</button>
-                        <button className="border-white w-24 border rounded-[50%/100%] px-4 py-2">Like</button>
-                        <button className="border-white w-24 border rounded-[50%/100%] px-4 py-2">DisLike</button>
+                        <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${subscribeValue===false? 'bg-white text-black' : ''} cursor-pointer`} onClick={()=>subscribeValueChange()}>{subscribeValue===true ? 'Subscribe':'Subscribed'}</button>
+                        <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${likeValue===false? 'bg-white text-black' : ''}`} onClick={()=>likeValueChange()}>{likeValue===true ? 'Like':'Liked'}</button>
+                        <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${dislikedValue===false? 'bg-white text-black' : ''}`} onClick={()=>dislikedValueChange()}>{dislikedValue===true ? 'Dislike':'Disliked'}</button>
                 </div>
 
                 <div className="flex flex-col border-2 p-2 border-black gap-1">
@@ -206,8 +222,8 @@ const WatchPage = () => {
                 </div>
 
             </div>
-            <div className="flex  flex-col w-full sm:w-2/5 cursor-pointer p-2 gap-5 sm:gap-3">
-                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 rounded-lg">
+            <div className="flex  flex-col w-full sm:w-2/5 cursor-pointer sm:p-0 p-2 gap-5 sm:gap-3">
+                <div onClick={() => { displayFunction(); }} className="border-2 border-black p-2 sm:p-0 rounded-lg">
                     <img className="w-full h-3/4 rounded-lg" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" alt="thumbnail" />
                     <p>Yeh Rishta Kya Kehlata Promo 28th May 2024</p>
                     <p>2024-05-28T02:46:55Z</p>
