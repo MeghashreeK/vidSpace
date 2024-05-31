@@ -6,35 +6,41 @@ import { useDispatch } from "react-redux";
 import { addId } from "../utils/SuggestionIdSlice";
 import { MAIN_PAGE_API } from '../utils/constants';
 import { useSelector } from 'react-redux';
+import { clearMainVdioId } from "../utils/MainPageSlice";
+import MainVideoCard from "./MainVideoCard";
 
 const VideoContainer=()=>{
     const [videoData,setVideoData]=useState([]);
     const dispatch=useDispatch();
     const getVdioId=useSelector((store)=>store.apiId.mainvdioId);
+    const [mainPageDataValue,setMainPageDataValue]=useState(false);
+    const [mainData,setMainData]=useState([]);
+    
 
     useEffect(() => {
-        // Fetch main page data whenever getVdioId changes
         if (getVdioId.length > 0) {
             getMainPageData();
+            setMainPageDataValue(!mainPageDataValue);
+            dispatch(clearMainVdioId());
         }
     }, [getVdioId]);
 
     useEffect(()=>{
         getVideoData();
     },[]);
-    console.log(MAIN_PAGE_API+getVdioId);
       
     const getMainPageData=async()=>{
         const data=await fetch(MAIN_PAGE_API+getVdioId);
         const json=await data.json();
         console.log(json);
         console.log(MAIN_PAGE_API+getVdioId);
+        setMainData(json.items);
+
     }
 
     const getVideoData=async()=>{
-        const data=await fetch(YOUTUBE_VIDEO_URL);
+        const data=await fetch(MAIN_PAGE_API+"Videos%202024");
         const json=await data.json();
-        // console.log(json);                              
         setVideoData(json.items);
     }
 
@@ -46,14 +52,24 @@ const VideoContainer=()=>{
 
     return(
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-            {videoData.map((video,index) => (
+            {mainPageDataValue===false && videoData.length>0 && videoData.map((video,index) => (
+                 <Link
+                 key={video.id.videoId}
+                 index={index}
+                 to={"/watch?v=" + video.id.videoId}
+                 onClick={()=>getId(video.snippet.channelTitle)}
+             >
+                 <MainVideoCard videoInfo={video}/>
+             </Link>
+            ))}
+            {mainPageDataValue && mainData.length>0 && mainData.map((video,index) => (
                 <Link
-                    key={video.id}
+                    key={video.id.videoId}
                     index={index}
-                    to={"/watch?v=" + video.id}
+                    to={"/watch?v=" + video.id.videoId}
                     onClick={()=>getId(video.snippet.channelTitle)}
                 >
-                    <VideoCard videoInfo={video}/>
+                    <MainVideoCard videoInfo={video}/>
                 </Link>
             ))}
         </div>
@@ -61,3 +77,5 @@ const VideoContainer=()=>{
   
 }
 export default VideoContainer;
+
+

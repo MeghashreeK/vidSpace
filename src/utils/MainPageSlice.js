@@ -8,9 +8,12 @@ const MainPageSlice=createSlice({
     reducers:{
         addApiId:(state,action)=>{
             state.mainvdioId.push(action.payload);
+    },
+    clearMainVdioId: (state) => {
+        state.mainvdioId = [];
     }
 }
 })
 
-export const {addApiId}=MainPageSlice.actions;
+export const {addApiId,clearMainVdioId}=MainPageSlice.actions;
 export default MainPageSlice.reducer;
