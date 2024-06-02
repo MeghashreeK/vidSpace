@@ -6,6 +6,7 @@ import SuggestionIdSlice from "./SuggestionIdSlice";
 import CommentsSlice from "./CommentsSlice";
 import MainPageSlice from "./MainPageSlice";
 import HeaderSlice from "./HeaderSlice";
+import FilterSearchSlice from "./FilterSearchSlice";
 
 const store=configureStore({
 reducer:{
@@ -15,7 +16,8 @@ reducer:{
     suggestionId:SuggestionIdSlice,
     comment:CommentsSlice,
     apiId:MainPageSlice,
-    error:HeaderSlice
+    error:HeaderSlice,
+    filter:FilterSearchSlice
 }
 });
 
