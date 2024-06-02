@@ -5,7 +5,7 @@ import WatchPage from "./WatchPage";
 
 const Body = () => {
     return (
-        <div className="flex w-full">
+        <div className="flex w-full bg-black">
             <SideBar />
             <Outlet />
         </div>

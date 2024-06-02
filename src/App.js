@@ -8,6 +8,7 @@ import WatchPage from './components/WatchPage';
 import MainContainer from './components/MainContainer';
 import LiveV from './components/LiveV';
 import LiveWatchPage from './components/LiveWatchPage';
+import Error from './components/Error';
 
 const App=()=> {
   return (
@@ -41,7 +42,8 @@ const AppRouter=createBrowserRouter(
     path:"/livewatch",
     element:<LiveWatchPage/>
   }
-    ]
+    ],
+    errorElement:<Error/>
   }]
 )
 

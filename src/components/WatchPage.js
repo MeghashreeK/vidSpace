@@ -118,24 +118,31 @@ const WatchPage = () => {
     const [insertComment, setInsertComment] = useState(false);
 
     const addingComment = useSelector((store) => store.comment.csection);
-    console.log(addingComment);
+
     useEffect(() => {
         dispatch(closeMenu());
-        // getComments();
-        // getSuggestionVideos();
+        getComments();
+        getSuggestionVideos();
     }, [])
 
-    // const getComments = async () => {
-    //     const data = await fetch(YOUTUBE_COMMENTS + searchParams.get("v"));
-    //     const json = await data.json();
-    //     setComments(json.items);
-    // }
-    // const getSuggestionVideos = async () => {
-    //     const data = await fetch(YOUTUBE_SUGGESTIONS_VIDEOS + suggestionVideoData);
-    //     const json = await data.json();
-    //     console.log(json);
-    //     setSuggestions(json.items);
-    // }
+    useEffect(() => {
+        if (insertComment && commentSection.current) {
+            commentSection.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+    }, [addingComment]);
+
+    const getComments = async () => {
+        const data = await fetch(YOUTUBE_COMMENTS + searchParams.get("v"));
+        const json = await data.json();
+        setComments(json.items);
+        console.log(json)
+    }
+    const getSuggestionVideos = async () => {
+        const data = await fetch(YOUTUBE_SUGGESTIONS_VIDEOS + suggestionVideoData);
+        const json = await data.json();
+        console.log(json);
+        setSuggestions(json.items);
+    }
 
     const displayFunction = () => {
         setDisplayVideo(true);
@@ -155,14 +162,11 @@ const WatchPage = () => {
     const dislikedValueChange = () => {
         setDislikedValue(!dislikedValue);
     }
+
     const commentFunction = (commentValue) => {
         dispatch(addComment(commentValue));
         setCommentValue("");
         setInsertComment(true);
-        if (commentSection.current) {
-            commentSection.current.scrollIntoView({ behavior: "smooth", flex: "end" });
-        }
-
     }
 
     return (
@@ -183,7 +187,7 @@ const WatchPage = () => {
                     <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${dislikedValue === false ? 'bg-white text-black' : ''}`} onClick={() => dislikedValueChange()}>{dislikedValue === true ? 'Dislike' : 'Disliked'}</button>
                 </div>
 
-                <div ref={commentSection} className="flex flex-col border-2 p-2 border-black gap-1 mt-2">
+                <div ref={commentSection} className="flex flex-col border-2 p-2 border-red-500 gap-1 mt-2">
                     <p className="font-bold">Comments</p>
                     <form className=" flex gap-1 mb-4 mt-4" onSubmit={
                         (e) => {
@@ -191,124 +195,39 @@ const WatchPage = () => {
                             dispatch(addComment(commentValue));
                             setCommentValue("");
                             setInsertComment(true);
-                            if (commentSection.current) {
-                                commentSection.current.scrollIntoView({ behavior: "smooth", flex: "end" });
-                            }
                         }
                     }>
-                        <input type="text" value={commentValue} placeholder="Add a comment" onChange={(e) => { setCommentValue(e.target.value) }} className="bg-black text-white border-b border-white focus:outline-none focus:border-b focus:border-white w-full" />
+                        <input type="text" value={commentValue} autoFocus placeholder="Add a comment" onChange={(e) => { setCommentValue(e.target.value) }} className="bg-black text-white border-b border-white focus:outline-none focus:border-b focus:border-white w-full" />
                         <img className="h-5 w-5 cursor-pointer" src="https://img.icons8.com/metro/26/ffffff/sent.png" onClick={() => commentFunction(commentValue)} alt="sent" />
                     </form>
-                    <div className="flex gap-2">
-                        <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
-                        <div>
-                            <p className="font-bold">Janahvi shah</p>
-                            <p>In this serial only 3 sensible people are there. Rest all are senseless and selfish. Manisha ji and abhira bonding is so beautiful. I love the way how madhav takes her side and the way manish supports abhira by keeping ruhi aside
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex gap-2">
-                        <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
-                        <div>
-                            <p className="font-bold">Janahvi shah</p>
-                            <p>In this serial only 3 sensible people are there. Rest all are senseless and selfish. Manisha ji and abhira bonding is so beautiful. I love the way how madhav takes her side and the way manish supports abhira by keeping ruhi aside
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex gap-2">
-                        <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
-                        <div>
-                            <p className="font-bold">Janahvi shah</p>
-                            <p>❤❤❤ https://youtube.com/shorts/nLC9tNH0awo?si=O8Sdvp3KwBy58eNb</p>
-                        </div>
-                    </div>
-                    <div className="flex gap-2">
-                        <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
-                        <div>
-                            <p className="font-bold">Janahvi shah</p>
-                            <p>In this serial only 3 sensible people are there. Rest all are senseless and selfish. Manisha ji and abhira bonding is so beautiful. I love the way how madhav takes her side and the way manish supports abhira by keeping ruhi aside
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex gap-2">
-                        <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
-                        <div>
-                            <p className="font-bold">Janahvi shah</p>
-                            <p>❤❤❤ https://youtube.com/shorts/nLC9tNH0awo?si=O8Sdvp3KwBy58eNb</p>
-                        </div>
-                    </div>
-                    <div className="flex gap-2">
-                        <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
-                        <div>
-                            <p className="font-bold">Janahvi shah</p>
-                            <p>Kkehk</p>
-                        </div>
-                    </div>
-                    {addingComment.map((comment, index) =>
-                        insertComment && <div className="flex gap-2" key={index}>
-                            <img className="h-10 w-10 rounded-full" src="https://img.icons8.com/windows/32/ffffff/user-male-circle.png" alt="user-profile" />
-                            <div>
-                                <p className="font-bold">@Username</p>
-                                <p>{comment}</p>
+                    <div className="flex flex-col gap-5">
+                        {comments.length > 0 && comments.map((comment) => {
+                            const { authorDisplayName, authorProfileImageUrl, textOriginal } = comment?.snippet?.topLevelComment?.snippet || {};
+                            return (
+                                <div key={comment.id} className="flex gap-3">
+                                    <img className="h-10 w-10 rounded-full" src={authorProfileImageUrl} alt="user-profile" />
+                                    <div>
+                                        <p className="font-bold">{authorDisplayName}</p>
+                                        <p>{textOriginal}</p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                        {addingComment.map((comment, index) =>
+                            insertComment && <div className="flex gap-2" key={index}>
+                                <img className="h-10 w-10" src="https://img.icons8.com/material/24/808080/user-male-circle--v1.png" alt="user-male-circle--v1" />                            <div>
+                                    <p className="font-bold">@Username</p>
+                                    <p>{comment}</p>
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
 
             </div>
-            <div className="flex h-full flex-col w-full sm:w-[30%] cursor-pointer sm:p-0 p-2 gap-5 sm:gap-3">
+            <div className="flex h-full flex-col w-full sm:w-[30%] cursor-pointer sm:p-0 p-3 gap-5 sm:gap-3">
                 <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
-                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
-                    <div className="p-4 flex flex-col justify-between h-full">
-                        <ul>
-                            <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>
-                            <li className="text-slate-400">2024-05-28T02:46:55Z</li>
-                            <li className="text-slate-400">India Forums Hindi</li>
-                        </ul>
-                    </div>
-                </div>
-                <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
-                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
-                    <div className="p-4 flex flex-col justify-between h-full">
-                        <ul>
-                            <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>
-                            <li className="text-slate-400">2024-05-28T02:46:55Z</li>
-                            <li className="text-slate-400">India Forums Hindi</li>
-                        </ul>
-                    </div>
-                </div>
-                <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
-                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
-                    <div className="p-4 flex flex-col justify-between h-full">
-                        <ul>
-                            <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>
-                            <li className="text-slate-400">2024-05-28T02:46:55Z</li>
-                            <li className="text-slate-400">India Forums Hindi</li>
-                        </ul>
-                    </div>
-                </div>
-                <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
-                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
-                    <div className="p-4 flex flex-col justify-between h-full">
-                        <ul>
-                            <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>
-                            <li className="text-slate-400">2024-05-28T02:46:55Z</li>
-                            <li className="text-slate-400">India Forums Hindi</li>
-                        </ul>
-                    </div>
-                </div>
-                <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
-                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
-                    <div className="p-4 flex flex-col justify-between h-full">
-                        <ul>
-                            <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>
-                            <li className="text-slate-400">2024-05-28T02:46:55Z</li>
-                            <li className="text-slate-400">India Forums Hindi</li>
-                        </ul>
-                    </div>
-                </div>
-                <div onClick={() => { displayFunction(); }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
-                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg"/>
+                    <img alt="thumbnail" src="https://i.ytimg.com/vi/C6XhHV4wRFs/mqdefault.jpg" className="w-full h-48 object-cover rounded-lg" />
                     <div className="p-4 flex flex-col justify-between h-full">
                         <ul>
                             <li className="font-bold truncate-2-lines text-white">Yeh Rishta Kya Kehlata Promo 28th May 2024</li>

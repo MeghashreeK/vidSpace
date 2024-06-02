@@ -5,6 +5,7 @@ import LiveChatSlice from "./LiveChatSlice";
 import SuggestionIdSlice from "./SuggestionIdSlice";
 import CommentsSlice from "./CommentsSlice";
 import MainPageSlice from "./MainPageSlice";
+import HeaderSlice from "./HeaderSlice";
 
 const store=configureStore({
 reducer:{
@@ -13,7 +14,8 @@ reducer:{
     chat:LiveChatSlice,
     suggestionId:SuggestionIdSlice,
     comment:CommentsSlice,
-    apiId:MainPageSlice
+    apiId:MainPageSlice,
+    error:HeaderSlice
 }
 });
 

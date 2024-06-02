@@ -11,7 +11,7 @@ const Header = () => {
     }
     const [searchQuery, setSearchQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
-
+    const [error, setError] = useState(false); 
     const searchCache = useSelector((store) => store.search);
 
     // Suppose,
@@ -70,6 +70,10 @@ const Header = () => {
             [searchQuery]: json[1],
         }))
 
+    }
+
+    if (error) {
+        return null;
     }
 
     return (

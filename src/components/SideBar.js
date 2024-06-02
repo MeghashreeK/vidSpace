@@ -24,7 +24,7 @@ const SideBar = () => {
 
     if (!isMenuOpen) return null;
     return (
-        <div className="bg-black w-2/6 flex justify-center">
+        <div className="bg-black w-2/6 flex justify-center h-full">
             <ul className="text-white flex flex-col gap-3 w-full px-2">
             {sideBarItems.map((item, index) => (
                     <div key={index} className="flex flex-wrap justify-center xl:justify-normal items-center gap-1 hover:bg-[#1f1f1f] hover:rounded-lg p-1" onClick={() => sideBarFunction(item.id)}>
