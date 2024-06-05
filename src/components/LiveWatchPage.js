@@ -11,7 +11,7 @@ const LiveWatchPage = () => {
 
     const dispatch = useDispatch();
     const liveMessage = useSelector((store) => store.chat.message);
-    const [searchParams] = useSearchParams();
+    // const [searchParams] = useSearchParams();
     const [newMessage,setNewMessage]=useState([]);
 
     useEffect(() => {
@@ -32,16 +32,6 @@ const LiveWatchPage = () => {
 
     return (
         <div className="flex w-full gap-5 h-screen flex-row">
-
-            <div className="flex flex-col">
-
-                <iframe width="560" height="315" src={"https://www.youtube.com/embed/" + searchParams.get("v")}
-                    title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                <div>
-                    <p>Comments Section Off</p>
-                </div>
-            </div>
             <div className="flex flex-col w-full">
                 <div className="flex border-2 border-black w-2/3 flex-col-reverse overflow-y-scroll h-1/2 gap-3 p-2">
                     {liveMessage.map((c) => <div className="flex items-center gap-1">

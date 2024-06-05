@@ -22,12 +22,12 @@ const VideoContainer = () => {
     const [filteredData, setFilteredData] = useState([]);
     const keys = useSelector((store) => store.filter.searchkeys);
 
-
+    console.log(getVdioId);
     useEffect(() => {
         if (getVdioId.length > 0) {
             getMainPageData();
             setMainPageDataValue(!mainPageDataValue);
-            dispatch(clearMainVdioId());
+            // dispatch(clearMainVdioId());
         }
     }, [getVdioId]);
 
@@ -47,7 +47,8 @@ const VideoContainer = () => {
 
     const getMainPageData = async () => {
 
-        const data = await fetch(MAIN_PAGE_API + getVdioId);
+        const lastVdioId = getVdioId[getVdioId.length - 1];
+        const data = await fetch(MAIN_PAGE_API + lastVdioId);
         const json = await data.json();
         console.log(json);
         console.log(MAIN_PAGE_API + getVdioId);
