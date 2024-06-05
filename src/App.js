@@ -33,15 +33,7 @@ const AppRouter=createBrowserRouter(
       {
         path:"/watch",
         element:<WatchPage/>
-    },
-    {
-      path:"/live",
-      element:<LiveV/>
-  },
-  {
-    path:"/livewatch",
-    element:<LiveWatchPage/>
-  }
+    }
     ],
     errorElement:<Error/>
   }]

@@ -35,15 +35,15 @@ const VideoContainer = () => {
         getVideoData();
     }, []);
 
-    useEffect(() => {
-        if (keys.length > 0) {
-            const lastValueOfKeys = keys[keys.length - 1];
-            const filteredTitles = videoData.filter((data) => data.snippet.title.toLowerCase().includes(lastValueOfKeys.toLowerCase()));
-            setFilteredData(filteredTitles);
-            console.log(filteredTitles);
-        }
+    // useEffect(() => {
+    //     if (keys.length > 0) {
+    //         const lastValueOfKeys = keys[keys.length - 1];
+    //         const filteredTitles = videoData.filter((data) => data.snippet.title.toLowerCase().includes(lastValueOfKeys.toLowerCase()));
+    //         setFilteredData(filteredTitles);
+    //         console.log(filteredTitles);
+    //     }
 
-    }, [keys.length]);
+    // }, [keys.length]);
 
     const getMainPageData = async () => {
 
@@ -52,13 +52,14 @@ const VideoContainer = () => {
         console.log(json);
         console.log(MAIN_PAGE_API + getVdioId);
         setMainData(json.items);
+        console.log(json.items);
 
     }
 
 
 
     const getVideoData = async () => {
-        const data = await fetch(YOUTUBE_VIDEO_URL);
+        const data = await fetch(MAIN_PAGE_API+"Videos%202024");
         const json = await data.json();
         setVideoData(json.items);
         setFilteredData(json.items);
@@ -94,29 +95,29 @@ const VideoContainer = () => {
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-            {/* {mainPageDataValue===false && videoData.length>0 && videoData.map((video,index) => (
-                 <Link
-                 key={video.id.videoId}
-                 index={index}
-                 to={"/watch?v=" + video.id.videoId}
-                 onClick={()=>getId(video.snippet.channelTitle)}
-             >
-                 <MainVideoCard videoInfo={video}/>
-             </Link>
+            {mainPageDataValue === false && videoData.length > 0 && videoData.map((video, index) => (
+                <Link
+                    key={video.id}
+                    index={index}
+                    to={"/watch?v=" + video.id.videoId}
+                    onClick={() => getId(video.snippet.channelTitle)}
+                >
+                    <MainVideoCard videoInfo={video} />
+                </Link>
             ))}
-            {mainPageDataValue && mainData.length>0 && mainData.map((video,index) => (
+            {mainPageDataValue && mainData.length > 0 && mainData.map((video, index) => (
                 <Link
                     key={video.id.videoId}
                     index={index}
                     to={"/watch?v=" + video.id.videoId}
-                    onClick={()=>getId(video.snippet.channelTitle)}
+                    onClick={() => getId(video.snippet.channelTitle)}
                 >
-                    <MainVideoCard videoInfo={video}/>
+                    <MainVideoCard videoInfo={video} />
                 </Link>
-            ))} */}
+            ))}
 
 
-            {keys.length===0 && videoData.map((video, index) => (
+            {/* {keys.length===0 && videoData.map((video, index) => (
                 <Link
                     key={video.id}
                     index={index}
@@ -136,7 +137,7 @@ const VideoContainer = () => {
                 >
                     <VideoCard videoInfo={video} />
                 </Link>
-            ))}
+            ))} */}
 
 
         </div>

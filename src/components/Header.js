@@ -12,7 +12,6 @@ const Header = () => {
     }
     const [searchQuery, setSearchQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
-    const [error, setError] = useState(false); 
     const searchCache = useSelector((store) => store.search);
 
     // Suppose,
@@ -73,9 +72,7 @@ const Header = () => {
 
     }
 
-    if (error) {
-        return null;
-    }
+    
     
     return (
         <div className="flex w-full p-2 bg-[#000000]">
