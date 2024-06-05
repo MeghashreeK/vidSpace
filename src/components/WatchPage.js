@@ -24,6 +24,10 @@ const WatchPage = () => {
     const [commentValue, setCommentValue] = useState([]);
     const [insertComment, setInsertComment] = useState(false);
     const [commentSectionDisabled, setCommentSectionDisabled] = useState(false);
+    const [isLivePage,setIsLivePage]=useState(false);
+    const getVdioId = useSelector((store) => store.apiId.mainvdioId);
+    
+
 
     const addingComment = useSelector((store) => store.comment.csection);
 
@@ -31,7 +35,13 @@ const WatchPage = () => {
         dispatch(closeMenu());
         getComments();
         getSuggestionVideos();
+        const lastVdioId = getVdioId[getVdioId.length - 1];
+        if(lastVdioId==="Live%202024"){
+            setIsLivePage(true);
+        }
     }, [])
+
+
 
     useEffect(() => {
         if (insertComment && commentSection.current) {
@@ -169,17 +179,17 @@ const WatchPage = () => {
                                                 </div>
                                             )
                                         )}
-
-
-
                                     </div>
                                 </>)
                     }
                 </div>
 
             </div>
-            <div className="flex h-full flex-col w-full sm:w-[30%] cursor-pointer sm:p-0 p-3 gap-5 sm:gap-3">
-                
+            <div className="flex h-full flex-col w-full sm:w-[30%] cursor-pointer sm:p-0 p-3 gap-2">
+                {isLivePage && <div className="flex">
+                    <LiveWatchPage/>
+                </div>}
+                <div className="flex flex-col gap-5 sm:gap-3">
                 {suggestions.map((data) => {
                     const { snippet, id } = data;
                     const { videoId } = id;
@@ -197,6 +207,7 @@ const WatchPage = () => {
                         </div>
                     )
                 })}
+                </div>
             </div>
 
         </div >
