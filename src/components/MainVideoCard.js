@@ -21,7 +21,7 @@ const MainVideoCard = ({ videoInfo }) => {
         //     </div>
         // </div>
 
-        <div className="h-full rounded-lg bg-[#1f1f1f] border-2 border-red-700">
+        <div className="h-full rounded-lg bg-[#1f1f1f]">
             <div className="flex flex-col h-full">
                 <div className="relative overflow-hidden rounded-lg" style={{ paddingTop: '56.25%' }}>
                     <img

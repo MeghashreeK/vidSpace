@@ -11,7 +11,6 @@ const LiveWatchPage = () => {
 
     const dispatch = useDispatch();
     const liveMessage = useSelector((store) => store.chat.message);
-    // const [searchParams] = useSearchParams();
     const [newMessage, setNewMessage] = useState([]);
 
     useEffect(() => {
@@ -38,10 +37,10 @@ const LiveWatchPage = () => {
     }
 
     return (
-        <div className="flex w-full gap-5 h-screen flex-row text-[14px] sm:text-[16px]">
+        <div className="flex w-full h-full gap-5 flex-row text-[14px] sm:text-[16px]">
             <div className="flex flex-col w-full">
                 <p className="font-bold">🔴Live Chat</p>
-                <div className="flex border border-slate-100 rounded-sm flex-col-reverse overflow-y-scroll gap-3 p-4 mt-1">
+                <div className="flex border-2 border-slate-100 rounded-sm flex-col-reverse overflow-y-scroll gap-3 p-4 mt-1 h-4/5">
                     {liveMessage.map((c) => <div className="flex items-center gap-1">
                         <img className="h-8 w-8 rounded-full" width="24" height="24" src={c.image} alt="user-male-circle" />
                         <div className="flex gap-2">
@@ -55,7 +54,7 @@ const LiveWatchPage = () => {
                     handleCommentEvent();
                 }}>
                     <input className="w-full rounded-lg py-0.5 px-2 focus:outline-none text-black" placeholder="Your message..." type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
-                    <img className="h-5 w-5 cursor-pointer" src="https://img.icons8.com/metro/26/ffffff/sent.png" alt="sent" onClick={() => {handleCommentEvent();}} />
+                    <img className="h-5 w-5 cursor-pointer" src="https://img.icons8.com/metro/26/ffffff/sent.png" alt="sent" onClick={() => { handleCommentEvent(); }} />
 
                 </form>
             </div>
@@ -63,3 +62,5 @@ const LiveWatchPage = () => {
     );
 }
 export default LiveWatchPage;
+
+

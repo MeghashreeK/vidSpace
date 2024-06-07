@@ -49,16 +49,6 @@ const WatchPage = () => {
         }
     }, [addingComment]);
 
-    // const getComments = async () => {
-    //     try {
-    //         const data = await fetch(YOUTUBE_COMMENTS + searchParams.get("v"));
-    //         const json = await data.json();
-    //         setComments(json.items);
-    //     } catch (error) {
-    //         console.log('Error fetching comments:', error);
-    //     }
-    // }
-
     const getComments = async () => {
         try {
             const response = await fetch(YOUTUBE_COMMENTS + searchParams.get("v"));
@@ -183,8 +173,8 @@ const WatchPage = () => {
                 </div>
 
             </div>
-            <div className="flex flex-col w-full sm:w-[30%] cursor-pointer sm:p-0 p-3 gap-5">
-                {isLivePage && <div className="flex">
+            <div className="flex h-full flex-col w-full sm:w-[30%] cursor-pointer sm:p-0 p-3 gap-5">
+                {isLivePage && <div className="flex h-[80vh] overflow-hidden">
                     <LiveWatchPage />
                 </div>}
                 <div className="flex flex-col gap-5 sm:gap-3">
@@ -194,7 +184,7 @@ const WatchPage = () => {
                         const { thumbnails, title, publishTime, channelTitle } = snippet;
                         return (
                             <div onClick={() => { displayFunction(); setVideoI(videoId) }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
-                                <img alt="thumbnail" src={thumbnails.medium.url} className="w-full h-48 object-cover rounded-lg" />
+                                <img alt="thumbnail" src={thumbnails.high.url} className="w-full h-48 object-cover rounded-lg" />
                                 <div className="p-4 flex flex-col justify-between h-full">
                                     <ul>
                                         <li className="font-bold truncate-2-lines text-white">{title}</li>
@@ -212,4 +202,3 @@ const WatchPage = () => {
     );
 }
 export default WatchPage;
-
