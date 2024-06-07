@@ -24,9 +24,9 @@ const WatchPage = () => {
     const [commentValue, setCommentValue] = useState([]);
     const [insertComment, setInsertComment] = useState(false);
     const [commentSectionDisabled, setCommentSectionDisabled] = useState(false);
-    const [isLivePage,setIsLivePage]=useState(false);
+    const [isLivePage, setIsLivePage] = useState(false);
     const getVdioId = useSelector((store) => store.apiId.mainvdioId);
-    
+
 
 
     const addingComment = useSelector((store) => store.comment.csection);
@@ -36,7 +36,7 @@ const WatchPage = () => {
         getComments();
         getSuggestionVideos();
         const lastVdioId = getVdioId[getVdioId.length - 1];
-        if(lastVdioId==="Live%202024"){
+        if (lastVdioId === "Live%202024") {
             setIsLivePage(true);
         }
     }, [])
@@ -116,7 +116,7 @@ const WatchPage = () => {
                 <div className="aspect-w-16 aspect-h-9 w-full">
                     <iframe
                         ref={iframeRef}
-                        src={`https://www.youtube.com/embed/${displayVideo ? videoI : searchParams.get("v")}`}
+                        src={`https://www.youtube.com/embed/${displayVideo ? videoI : searchParams.get("v")}?autoplay=1`}
                         title="YouTube video player"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -124,6 +124,7 @@ const WatchPage = () => {
                         className="rounded-lg w-full"
                         allowFullScreen
                     ></iframe>
+
                 </div>
                 <div className="flex gap-5 mt-[2%] p-2">
                     <button className={`border-white w-26  border rounded-[50%/100%] px-4 py-2 cursor-pointer ${subscribeValue === false ? 'bg-white text-black' : ''} cursor-pointer`} onClick={() => subscribeValueChange()}>{subscribeValue === true ? 'Subscribe' : 'Subscribed'}</button>
@@ -153,9 +154,6 @@ const WatchPage = () => {
                                         <img className="h-5 w-5 cursor-pointer" src="https://img.icons8.com/metro/26/ffffff/sent.png" onClick={() => commentFunction(commentValue)} alt="sent" />
                                     </form>
                                     <div className="flex flex-col gap-5">
-
-
-
                                         {comments.map((comment) => {
                                             const { authorDisplayName, authorProfileImageUrl, textOriginal } = comment?.snippet?.topLevelComment?.snippet || {};
                                             return (
@@ -185,28 +183,28 @@ const WatchPage = () => {
                 </div>
 
             </div>
-            <div className="flex h-full flex-col w-full sm:w-[30%] cursor-pointer sm:p-0 p-3 gap-2">
+            <div className="flex flex-col w-full sm:w-[30%] cursor-pointer sm:p-0 p-3 gap-5">
                 {isLivePage && <div className="flex">
-                    <LiveWatchPage/>
+                    <LiveWatchPage />
                 </div>}
                 <div className="flex flex-col gap-5 sm:gap-3">
-                {suggestions.map((data) => {
-                    const { snippet, id } = data;
-                    const { videoId } = id;
-                    const { thumbnails, title, publishTime, channelTitle } = snippet;
-                    return (
-                        <div onClick={() => { displayFunction(); setVideoI(videoId) }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
-                            <img alt="thumbnail" src={thumbnails.medium.url} className="w-full h-48 object-cover rounded-lg" />
-                            <div className="p-4 flex flex-col justify-between h-full">
-                                <ul>
-                                    <li className="font-bold truncate-2-lines text-white">{title}</li>
-                                    <li className="text-slate-400">{publishTime}</li>
-                                    <li className="text-slate-400">{channelTitle}</li>
-                                </ul>
+                    {suggestions.map((data) => {
+                        const { snippet, id } = data;
+                        const { videoId } = id;
+                        const { thumbnails, title, publishTime, channelTitle } = snippet;
+                        return (
+                            <div onClick={() => { displayFunction(); setVideoI(videoId) }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
+                                <img alt="thumbnail" src={thumbnails.medium.url} className="w-full h-48 object-cover rounded-lg" />
+                                <div className="p-4 flex flex-col justify-between h-full">
+                                    <ul>
+                                        <li className="font-bold truncate-2-lines text-white">{title}</li>
+                                        <li className="text-slate-400">{publishTime}</li>
+                                        <li className="text-slate-400">{channelTitle}</li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })}
                 </div>
             </div>
 
