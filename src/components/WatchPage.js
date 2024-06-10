@@ -174,7 +174,7 @@ const WatchPage = () => {
                 </div>
 
             </div>
-            <div className="flex h-full flex-col w-full sm:w-[30%] cursor-pointer sm:p-0 p-3 gap-5">
+            <div className="flex h-full flex-col w-full sm:w-[30%] cursor-pointer sm:p-0 p-3">
                 {isLivePage && <div className="flex h-[80vh] overflow-hidden">
                     <LiveWatchPage />
                 </div>}
