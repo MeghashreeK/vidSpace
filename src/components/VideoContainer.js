@@ -27,7 +27,6 @@ const VideoContainer = () => {
         if (getVdioId.length > 0) {
             getMainPageData();
             setMainPageDataValue(!mainPageDataValue);
-            // dispatch(clearMainVdioId());
         }
     }, [getVdioId]);
 
@@ -35,15 +34,15 @@ const VideoContainer = () => {
         getVideoData();
     }, []);
 
-    // useEffect(() => {
-    //     if (keys.length > 0) {
-    //         const lastValueOfKeys = keys[keys.length - 1];
-    //         const filteredTitles = videoData.filter((data) => data.snippet.title.toLowerCase().includes(lastValueOfKeys.toLowerCase()));
-    //         setFilteredData(filteredTitles);
-    //         console.log(filteredTitles);
-    //     }
+    useEffect(() => {
+        if (keys.length > 0) {
+            const lastValueOfKeys = keys[keys.length - 1];
+            const filteredTitles = videoData.filter((data) => data.snippet.title.toLowerCase().includes(lastValueOfKeys.toLowerCase()));
+            setFilteredData(filteredTitles);
+            console.log(filteredTitles);
+        }
 
-    // }, [keys.length]);
+    }, [keys.length]);
 
     const getMainPageData = async () => {
 
@@ -54,6 +53,7 @@ const VideoContainer = () => {
         console.log(MAIN_PAGE_API + getVdioId);
         setMainData(json.items);
         console.log(json.items);
+        setFilteredData(json.items);
 
     }
 
@@ -90,56 +90,61 @@ const VideoContainer = () => {
         dispatch(addId(channelname));
     }
 
-    if (error) {
-        return <Error />;
-    }
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-            {mainPageDataValue === false && videoData.length > 0 && videoData.map((video, index) => (
-                <Link
-                    key={video.id}
-                    index={index}
-                    to={"/watch?v=" + video.id.videoId}
-                    onClick={() => getId(video.snippet.channelTitle)}
-                >
-                    <MainVideoCard videoInfo={video} />
-                </Link>
-            ))}
-            {mainPageDataValue && mainData.length > 0 && mainData.map((video, index) => (
-                <Link
-                    key={video.id.videoId}
-                    index={index}
-                    to={"/watch?v=" + video.id.videoId}
-                    onClick={() => getId(video.snippet.channelTitle)}
-                >
-                    <MainVideoCard videoInfo={video} />
-                </Link>
-            ))}
+            
+            {
+                keys.length > 0 ? (
+                    mainPageDataValue === false && filteredData.length > 0 && filteredData.map((video, index) => (
+                        <Link
+                            key={video.id.videoId}
+                            index={index}
+                            to={"/watch?v=" + video.id.videoId}
+                            onClick={() => getId(video.snippet.channelTitle)}
+                        >
+                            <MainVideoCard videoInfo={video} />
+                        </Link>
+                    ))
+                ) : (
+                    mainPageDataValue === false && videoData.length > 0 && videoData.map((video, index) => (
+                        <Link
+                            key={video.id}
+                            index={index}
+                            to={"/watch?v=" + video.id.videoId}
+                            onClick={() => getId(video.snippet.channelTitle)}
+                        >
+                            <MainVideoCard videoInfo={video} />
+                        </Link>
+                    ))
+                )
+            }
 
-
-            {/* {keys.length===0 && videoData.map((video, index) => (
-                <Link
-                    key={video.id}
-                    index={index}
-                    to={"/watch?v=" + video.id}
-                    onClick={() => getId(video.snippet.channelTitle)}
-                >
-                    <VideoCard videoInfo={video} />
-                </Link>
-            ))}
-
-            {filteredData.map((video, index) => (
-                <Link
-                    key={video.id}
-                    index={index}
-                    to={"/watch?v=" + video.id}
-                    onClick={() => getId(video.snippet.channelTitle)}
-                >
-                    <VideoCard videoInfo={video} />
-                </Link>
-            ))} */}
-
+              {
+                keys.length > 0 ? (
+                    mainPageDataValue && filteredData.length > 0 && filteredData.map((video, index) => (
+                        <Link
+                            key={video.id.videoId}
+                            index={index}
+                            to={"/watch?v=" + video.id.videoId}
+                            onClick={() => getId(video.snippet.channelTitle)}
+                        >
+                            <MainVideoCard videoInfo={video} />
+                        </Link>
+                    ))
+                ) : (
+                    mainPageDataValue && mainData.length > 0 && mainData.map((video, index) => (
+                        <Link
+                            key={video.id.videoId}
+                            index={index}
+                            to={"/watch?v=" + video.id.videoId}
+                            onClick={() => getId(video.snippet.channelTitle)}
+                        >
+                            <MainVideoCard videoInfo={video} />
+                        </Link>
+                    ))
+                )
+            }
 
         </div>
     );
