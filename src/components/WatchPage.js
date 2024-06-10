@@ -185,7 +185,9 @@ const WatchPage = () => {
                         const { thumbnails, title, publishTime, channelTitle } = snippet;
                         return (
                             <div onClick={() => { displayFunction(); setVideoI(videoId) }} className="flex flex-col h-full rounded-lg w-full bg-[#1f1f1f]">
+                                <div className="flex relative overflow-hidden rounded-lg">
                                 <img alt="thumbnail" src={thumbnails.high.url} className="w-full h-48 object-cover rounded-lg" />
+                                </div>
                                 <div className="p-4 flex flex-col justify-between h-full">
                                     <ul>
                                         <li className="font-bold truncate-2-lines text-white">{title}</li>
