@@ -18,17 +18,14 @@ const WatchPage = () => {
     const [videoI, setVideoI] = useState([]);
     const iframeRef = useRef(null);
     const commentSection = useRef(null);
-    const [subscribeValue, setsubscribeValue] = useState(true);
-    const [likeValue, setLikeValue] = useState(true);
-    const [dislikedValue, setDislikedValue] = useState(true);
+    const [subscribeButton, setsubscribeButton] = useState(false);
+    const [likeButton, setlikeButton] = useState(false);
+    const [dislikeButton, setdislikeButton] = useState(false);
     const [commentValue, setCommentValue] = useState([]);
     const [insertComment, setInsertComment] = useState(false);
     const [commentSectionDisabled, setCommentSectionDisabled] = useState(false);
     const [isLivePage, setIsLivePage] = useState(false);
     const getVdioId = useSelector((store) => store.apiId.mainvdioId);
-
-
-
     const addingComment = useSelector((store) => store.comment.csection);
 
     useEffect(() => {
@@ -81,16 +78,20 @@ const WatchPage = () => {
         }
     }
 
-    const subscribeValueChange = () => {
-        setsubscribeValue(!subscribeValue);
+    const subscribeButtonChange = () => {
+        setsubscribeButton(!subscribeButton);
     }
 
-    const likeValueChange = () => {
-        setLikeValue(!likeValue);
+   
+    const likeButtonChange = () => {
+        setlikeButton(!likeButton);
+        setdislikeButton(false);
+
     }
 
-    const dislikedValueChange = () => {
-        setDislikedValue(!dislikedValue);
+    const dislikeButtonChange = () => {
+        setdislikeButton(!dislikeButton);
+        setlikeButton(false);
     }
 
     const commentFunction = (commentValue) => {
@@ -117,9 +118,9 @@ const WatchPage = () => {
 
                 </div>
                 <div className="flex gap-5 mt-[2%] p-2">
-                    <button className={`border-white w-26  border rounded-[50%/100%] px-4 py-2 cursor-pointer ${subscribeValue === false ? 'bg-white text-black' : ''} cursor-pointer`} onClick={() => subscribeValueChange()}>{subscribeValue === true ? 'Subscribe' : 'Subscribed'}</button>
-                    <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${likeValue === false ? 'bg-white text-black' : ''}`} onClick={() => likeValueChange()}>{likeValue === true ? 'Like' : 'Liked'}</button>
-                    <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${dislikedValue === false ? 'bg-white text-black' : ''}`} onClick={() => dislikedValueChange()}>{dislikedValue === true ? 'Dislike' : 'Disliked'}</button>
+                    <button className={`border-white w-26  border rounded-[50%/100%] px-4 py-2 cursor-pointer ${subscribeButton ? 'bg-white text-black' : ''} cursor-pointer`} onClick={() => subscribeButtonChange()}>{subscribeButton ? 'Subscribed' : 'Subscribe'}</button>
+                    <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${likeButton ? 'bg-white text-black' : ''}`} onClick={() => likeButtonChange()}>{likeButton ? 'Liked' : 'Like'}</button>
+                    <button className={`border-white w-26 border rounded-[50%/100%] px-4 py-2 cursor-pointer ${dislikeButton ? 'bg-white text-black' : ''}`} onClick={() => dislikeButtonChange()}>{dislikeButton ? 'Disliked' : 'Dislike'}</button>
                 </div>
 
                 <div ref={commentSection} className="flex flex-col p-2 gap-1 mt-2">
