@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const MainPageSlice=createSlice({
     name:"apiId",
     initialState:{
-        mainvdioId:[],
+        mainvdioId:["Videos%202024"],
     },
     reducers:{
         addApiId:(state,action)=>{

@@ -4,7 +4,7 @@ import { toggleMenu } from "../utils/MenuSlice";
 import { useEffect, useState } from "react";
 import { YOUTUBE_SUGGESTIONS } from "../utils/constants";
 import { cacheResults } from "../utils/SearchSlice";
-import { addkey } from "../utils/FilterSearchSlice";
+import { addkey,removekey } from "../utils/FilterSearchSlice";
 const Header = () => {
     const dispatch = useDispatch();
     const toggleMenuBar = () => {
@@ -72,6 +72,16 @@ const Header = () => {
 
     }
 
+    const handleSearchChange = (e) => {
+        const value = e.target.value;
+        setSearchQuery(value);
+        if (value) {
+            dispatch(addkey(value));
+        } else {
+            dispatch(removekey());
+        }
+    };
+
     
     
     return (
@@ -88,7 +98,7 @@ const Header = () => {
             <div className="flex flex-col w-full items-center justify-center relative">
 
                 <div className="flex w-2/3" id="searchbar-container">
-                    <input type="text" className="flex py-4 pt-3 h-8 w-full rounded-l-full border-r-0 px-5 focus:outline-none" placeholder="Search" value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); dispatch(addkey(searchQuery)) }} />
+                    <input type="text" className="flex py-4 pt-3 h-8 w-full rounded-l-full border-r-0 px-5 focus:outline-none" placeholder="Search" value={searchQuery}  onChange={handleSearchChange} />
                     <button className="border border-black rounded-r-full px-2 bg-[#1f1f1f]"><img className="w-[18px] h-[18px]" src="https://img.icons8.com/ios-glyphs/30/ffffff/search--v1.png" alt="search--v1" /></button>
                 </div>
                 
