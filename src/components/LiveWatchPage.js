@@ -53,7 +53,7 @@ const LiveWatchPage = () => {
                     e.preventDefault();
                     handleCommentEvent();
                 }}>
-                    <input className="w-full rounded-lg py-0.5 px-2 focus:outline-none text-black" placeholder="Your message..." type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
+                    <input className="w-full rounded-lg py-0.5 px-2 focus:outline-none text-black placeholder:text-slate-500" placeholder="Your message..." type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
                     <img className="h-5 w-5 cursor-pointer" src="https://img.icons8.com/metro/26/ffffff/sent.png" alt="sent" onClick={() => { handleCommentEvent(); }} />
 
                 </form>
