@@ -6,8 +6,6 @@ import store from './utils/store';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import WatchPage from './components/WatchPage';
 import MainContainer from './components/MainContainer';
-import LiveV from './components/LiveV';
-import LiveWatchPage from './components/LiveWatchPage';
 import Error from './components/Error';
 
 const App=()=> {

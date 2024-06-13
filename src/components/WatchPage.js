@@ -65,11 +65,15 @@ const WatchPage = () => {
     };
 
     const getSuggestionVideos = async () => {
-        const data = await fetch(YOUTUBE_SUGGESTIONS_VIDEOS + suggestionVideoData);
-        const json = await data.json();
-        console.log(json);
-        setSuggestions(json.items);
-    }
+        try {
+            const data = await fetch(YOUTUBE_SUGGESTIONS_VIDEOS + suggestionVideoData);
+            const json = await data.json();
+            console.log(json);
+            setSuggestions(json.items);
+        } catch (error) {
+            console.error('Error fetching suggestion videos:', error);
+        }
+    };
 
     const displayFunction = () => {
         setDisplayVideo(true);

@@ -5,7 +5,6 @@ import { addId } from "../utils/SuggestionIdSlice";
 import { MAIN_PAGE_API } from '../utils/constants';
 import { useSelector } from 'react-redux';
 import MainVideoCard from "./MainVideoCard";
-import ShimmerVdioCard from "./ShimmerVdioCard";
 import Noresult from "./Noresult";
 
 
@@ -42,11 +41,16 @@ const VideoContainer = () => {
     }, [keys.length]);
 
     const getMainPageData = async () => {
+        try{
         const lastVdioId = getVdioId[getVdioId.length - 1];
         const data = await fetch(MAIN_PAGE_API + lastVdioId);
         const json = await data.json();
         setMainData(json.items);
         setFilteredData(json.items);
+        }
+        catch(error){
+            console.log("Error fetching MainPage VideoData:",error);
+        }
     }
 
     const getId = (channelname) => {

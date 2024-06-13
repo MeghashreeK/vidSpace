@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { closeMenu } from "../utils/MenuSlice";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import { addMessage } from "../utils/LiveChatSlice";
 import { generateRandomNames } from "../utils/helper";
 import { generateRandomStrings } from "../utils/helper";

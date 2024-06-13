@@ -62,13 +62,17 @@ const Header = () => {
     }
 
     const getSuggestions = async () => {
+        try{
         const data = await fetch(YOUTUBE_SUGGESTIONS + searchQuery);
         const json = await data.json();
-        // console.log(json);
         setSuggestions(json[1]);
         dispatch(cacheResults({
             [searchQuery]: json[1],
         }))
+    }
+    catch(error){
+        console.log("Error fetching suggestions data:",error);
+    }
 
     }
 

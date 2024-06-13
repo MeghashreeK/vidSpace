@@ -1,5 +1,4 @@
-import React from 'react';
-import space from "../images/space.jpg";
+
 const Error = () => {
   return (
     <div className="text-[14px] sm:text-[16px] flex flex-col w-full h-screen justify-center items-center px-2 bg-black">
