@@ -7,11 +7,13 @@ import { useSelector } from 'react-redux';
 import MainVideoCard from "./MainVideoCard";
 import ShimmerVdioCard from "./ShimmerVdioCard";
 
+
 const VideoContainer = () => {
     const dispatch = useDispatch();
     const getVdioId = useSelector((store) => store.apiId.mainvdioId);
     const [mainData, setMainData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
+    const [loading,setLoading]=useState(true);
     const keys = useSelector((store) => store.filter.searchkeys);
 
     console.log(getVdioId);
@@ -21,6 +23,13 @@ const VideoContainer = () => {
         }
     }, [getVdioId]);
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         if (keys.length > 0) {
@@ -44,9 +53,8 @@ const VideoContainer = () => {
     }
     return (
         
-            mainData.length===0 ? <ShimmerVdioCard /> :
 
-        (<div className="text-[14px] sm:text-[16px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+        <div className="text-[14px] sm:text-[16px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
 
             {
                 keys.length > 0 ? (
@@ -57,7 +65,7 @@ const VideoContainer = () => {
                             to={"/watch?v=" + video.id.videoId}
                             onClick={() => getId(video.snippet.channelTitle)}
                         >
-                            <MainVideoCard videoInfo={video} />
+                            <MainVideoCard videoInfo={video} loading={loading} />
                         </Link>
                     ))
                 ) : (
@@ -68,14 +76,35 @@ const VideoContainer = () => {
                             to={"/watch?v=" + video.id.videoId}
                             onClick={() => getId(video.snippet.channelTitle)}
                         >
-                            <MainVideoCard videoInfo={video} />
+                            <MainVideoCard videoInfo={video} loading={loading} />
                         </Link>
                     ))
                 )
             }
         </div>)
         
-    );
+    ;
 
 }
 export default VideoContainer;
+
+
+
+
+
+
+
+
+
+
+
+// import ShimmerVdioCard from "./ShimmerVdioCard"
+
+// const VideoContainer=()=>{
+//     return(
+//         <div className="w-full">
+//         <ShimmerVdioCard/>
+//         </div>
+//     )
+// }
+// export default VideoContainer;

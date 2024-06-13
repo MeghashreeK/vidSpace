@@ -1,6 +1,12 @@
-import React from 'react'
+import React from 'react';
+import ShimmerVdioCard from './ShimmerVdioCard';
 
-const MainVideoCard = ({ videoInfo }) => {
+const MainVideoCard = ({ videoInfo,loading }) => {
+
+    if (loading) {
+        return <ShimmerVdioCard />;
+    }
+
     const { snippet } = videoInfo;
     const { thumbnails, title, channelTitle } = snippet;
 
@@ -26,4 +32,5 @@ const MainVideoCard = ({ videoInfo }) => {
 }
 
 
-export default MainVideoCard
+export default MainVideoCard;
+
