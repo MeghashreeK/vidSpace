@@ -6,6 +6,7 @@ import { MAIN_PAGE_API } from '../utils/constants';
 import { useSelector } from 'react-redux';
 import MainVideoCard from "./MainVideoCard";
 import ShimmerVdioCard from "./ShimmerVdioCard";
+import Noresult from "./Noresult";
 
 
 const VideoContainer = () => {
@@ -13,7 +14,7 @@ const VideoContainer = () => {
     const getVdioId = useSelector((store) => store.apiId.mainvdioId);
     const [mainData, setMainData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
-    const [loading,setLoading]=useState(true);
+    const [loading, setLoading] = useState(true);
     const keys = useSelector((store) => store.filter.searchkeys);
 
     console.log(getVdioId);
@@ -52,59 +53,45 @@ const VideoContainer = () => {
         dispatch(addId(channelname));
     }
     return (
-        
 
-        <div className="text-[14px] sm:text-[16px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-
-            {
-                keys.length > 0 ? (
-                    filteredData.length > 0 && filteredData.map((video, index) => (
-                        <Link
-                            key={video.id.videoId}
-                            index={index}
-                            to={"/watch?v=" + video.id.videoId}
-                            onClick={() => getId(video.snippet.channelTitle)}
-                        >
-                            <MainVideoCard videoInfo={video} loading={loading} />
-                        </Link>
-                    ))
+        <div className="w-full h-full">
+            {keys.length > 0 ? (
+                filteredData.length === 0 && mainData.length > 0  ? (
+                    <div className="flex justify-center items-center w-full h-full">
+                        <Noresult />
+                    </div>
                 ) : (
-                    mainData.length > 0 && mainData.map((video, index) => (
-                        <Link
-                            key={video.id.videoId}
-                            index={index}
-                            to={"/watch?v=" + video.id.videoId}
-                            onClick={() => getId(video.snippet.channelTitle)}
-                        >
-                            <MainVideoCard videoInfo={video} loading={loading} />
-                        </Link>
-                    ))
+                    <div className="text-[14px] sm:text-[16px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4 w-full h-full">
+                        {filteredData.map((video, index) => (
+                            <Link
+                                key={video.id.videoId}
+                                index={index}
+                                to={"/watch?v=" + video.id.videoId}
+                                onClick={() => getId(video.snippet.channelTitle)}
+                            >
+                                <MainVideoCard videoInfo={video} loading={loading} />
+                            </Link>
+                        ))}
+                    </div>
                 )
-            }
-        </div>)
-        
-    ;
+            ) : (
+               
+                    <div className="text-[14px] sm:text-[16px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4 w-full h-full">
+                        {mainData.map((video, index) => (
+                            <Link
+                                key={video.id.videoId}
+                                index={index}
+                                to={"/watch?v=" + video.id.videoId}
+                                onClick={() => getId(video.snippet.channelTitle)}
+                            >
+                                <MainVideoCard videoInfo={video} loading={loading} />
+                            </Link>
+                        ))}
+                    </div>
+                
+            )}
+        </div>
+    );
 
 }
 export default VideoContainer;
-
-
-
-
-
-
-
-
-
-
-
-// import ShimmerVdioCard from "./ShimmerVdioCard"
-
-// const VideoContainer=()=>{
-//     return(
-//         <div className="w-full">
-//         <ShimmerVdioCard/>
-//         </div>
-//     )
-// }
-// export default VideoContainer;

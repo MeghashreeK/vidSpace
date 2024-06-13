@@ -27,19 +27,13 @@ const SideBar = () => {
         <div className="bg-black w-1/5 flex justify-center h-screen">
             <ul className="text-white flex flex-col gap-3 w-full px-2">
             {sideBarItems.map((item, index) => (
-                    <div key={index} className="flex flex-wrap justify-center xl:justify-normal items-center gap-1 hover:bg-[#1f1f1f] hover:rounded-lg p-1" onClick={() => sideBarFunction(item.id)}>
+                    <Link to="/"><div key={index} className="flex flex-wrap justify-center xl:justify-normal items-center gap-1 hover:bg-[#1f1f1f] hover:rounded-lg p-1 cursor-pointer" onClick={() => sideBarFunction(item.id)}>
                         <div className="flex flex-col items-center xl:flex-row xl:space-x-2">
                             <img className="w-5 h-4" src={item.iconSrc} alt={item.name} />
-                            <Link to="/"><li>{item.name}</li></Link>
+                            <li>{item.name}</li>
                         </div>
-                    </div>
+                    </div></Link>
                 ))}
-                {/* <div className="flex flex-wrap justify-center xl:justify-normal items-center gap-1 hover:bg-[#1f1f1f] hover:rounded-lg p-1">
-                    <div className="flex flex-col items-center xl:flex-row xl:space-x-2">
-                        <img className="w-5 h-4" src="https://img.icons8.com/windows/32/ffffff/youtube-live.png" alt="youtube-live" />
-                        <Link to="/live"><li className="text-center">Live Videos</li></Link>
-                    </div>
-                </div> */}
             </ul>
         </div>);
 }
