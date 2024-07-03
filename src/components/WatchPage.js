@@ -68,7 +68,7 @@ const WatchPage = () => {
         try {
             const data = await fetch(YOUTUBE_SUGGESTIONS_VIDEOS + suggestionVideoData);
             const json = await data.json();
-            console.log(json);
+            // console.log(json);
             setSuggestions(json.items);
         } catch (error) {
             console.error('Error fetching suggestion videos:', error);
