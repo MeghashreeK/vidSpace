@@ -5,8 +5,8 @@ I've created this web app using ReactJS, TailwindCSS, and Redux. The frontend is
 => Live Video Data: Utilizes Youtube's live API to display video data.
 
 => Search feature:
-  -Provides suggestions as you type in the search bar, using debouncing.
-  -Optimized to reduce unnecessary API calls by caching data.
+  a.Provides suggestions as you type in the search bar, using debouncing.
+  b.Optimized to reduce unnecessary API calls by caching data.
   
 => Video Comments: Users can comment on videos.
 
